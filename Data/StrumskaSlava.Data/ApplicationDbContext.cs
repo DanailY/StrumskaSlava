@@ -26,6 +26,18 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Gallery> Galleries { get; set; }
+
+        public DbSet<News> News { get; set; }
+
+        public DbSet<NewsCategory> NewsCategories { get; set; }
+
+        public DbSet<MatchSchedule> MatchSchedules { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
