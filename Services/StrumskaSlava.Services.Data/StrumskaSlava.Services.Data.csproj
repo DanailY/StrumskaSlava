@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\StrumskaSlava.Data.Common\StrumskaSlava.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\StrumskaSlava.Data.Models\StrumskaSlava.Data.Models.csproj" />
+    <ProjectReference Include="..\StrumskaSlava.Services.Mapping\StrumskaSlava.Services.Mapping.csproj" />
   </ItemGroup>
 
 </Project>

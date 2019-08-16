@@ -36,6 +36,7 @@
     <ProjectReference Include="..\..\Services\StrumskaSlava.Services.Mapping\StrumskaSlava.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\StrumskaSlava.Services.Messaging\StrumskaSlava.Services.Messaging.csproj" />
     <ProjectReference Include="..\..\Services\StrumskaSlava.Services\StrumskaSlava.Services.csproj" />
+    <ProjectReference Include="..\StrumskaSlava.Web.BindingModels\StrumskaSlava.Web.BindingModels.csproj" />
     <ProjectReference Include="..\StrumskaSlava.Web.Infrastructure\StrumskaSlava.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\StrumskaSlava.Web.ViewModels\StrumskaSlava.Web.ViewModels.csproj" />
   </ItemGroup>

@@ -23,9 +23,11 @@
     using StrumskaSlava.Data.Repositories;
     using StrumskaSlava.Data.Seeding;
     using StrumskaSlava.Middlewares;
+    using StrumskaSlava.Services;
     using StrumskaSlava.Services.Data;
     using StrumskaSlava.Services.Mapping;
     using StrumskaSlava.Services.Messaging;
+    using StrumskaSlava.Web.BindingModels.News;
     using StrumskaSlava.Web.ViewModels;
 
     public class Startup
@@ -115,12 +117,16 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISmsSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
+            services.AddTransient<INewsService, NewsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+            AutoMapperConfig.RegisterMappings(
+                typeof(ErrorViewModel).GetTypeInfo().Assembly,
+                typeof(NewsCategoryCreateBindingModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
@@ -133,7 +139,7 @@
                 }
 
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
-
+                app.UseSeedAdminUserMiddleware();
             }
 
             if (env.IsDevelopment())
@@ -151,9 +157,7 @@
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
-
-            app.UseSeedAdminUserMiddleware();
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
