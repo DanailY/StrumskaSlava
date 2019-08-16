@@ -7,10 +7,14 @@
 <form class="form border-primary-4 rounded p-3 w-25 mx-auto mt-3" asp-action="/Identity/Account/Login">
     <img class="mb-4" src="~/Images/StrumskaSlava.png" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Вход</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Имейл адрес" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Парола" required>
+    <label asp-for="Input.Username" class="sr-only">Username</label>
+    <input asp-for="Input.Username" type="text" id="inputUsername" class="form-control" placeholder="Потребителско име" required autofocus>
+    <span asp-validation-for="Input.Username" class="text-danger"></span>
+
+    <label asp-for="Input.Password" class="sr-only">Password</label>
+    <input asp-for="Input.Password" type="password" id="inputPassword" class="form-control" placeholder="Парола" required>
+    <span asp-validation-for="Input.Password" class="text-danger"></span>
+    
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> Запомни ме

@@ -46,11 +46,14 @@
             services
                 .AddIdentity<ApplicationUser, ApplicationRole>(options =>
                 {
+                    options.Password.RequiredLength = 3;
                     options.Password.RequireDigit = false;
+                    options.Password.RequiredUniqueChars = 0;
                     options.Password.RequireLowercase = false;
-                    options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
-                    options.Password.RequiredLength = 6;
+                    options.Password.RequireUppercase = false;
+
+                    options.User.RequireUniqueEmail = true;
                 })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddUserStore<ApplicationUserStore>()
