@@ -51,14 +51,58 @@
                         <a class="nav-link" href="#">Магазин</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ml-auto my-2 my-lg-0 font-weight-bold">
-                    <li class="nav-item active font-weight-bold">
-                        <a class="nav-link" href="/Identity/Account/Login">Вход</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/Identity/Account/Register">Регистрация</a>
-                    </li>
-                </ul>
+                @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+                {
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0 font-weight-bold">
+                        <li class="nav-item active font-weight-bold">
+                            <div class="dropdown show" id="products-dropdown">
+                                <a class="nav-link active font-weight-bold dropdown-toggle"
+                                   href="#"
+                                   id="productDropDown"
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Създаване
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="productDropDown">
+                                    <a class="dropdown-item" href="/Order/Cart">Cart</a>
+                                    <a class="dropdown-item" href="/Receipt/Profile">Receipts</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/Identity/Account/Logout">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Identity/Account/Register">Профил</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Identity/Account/Register">Изход</a>
+                        </li>
+                    </ul>
+                }
+                else if (this.User.Identity.IsAuthenticated && this.User.IsInRole("User"))
+                {
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0 font-weight-bold">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="">Профил</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="">Изход</a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0 font-weight-bold">
+                        <li class="nav-item active font-weight-bold">
+                            <a class="nav-link" href="/Identity/Account/Login">Вход</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Identity/Account/Register">Регистрация</a>
+                        </li>
+                    </ul>
+                }
             </div>
         </nav>
     </header>

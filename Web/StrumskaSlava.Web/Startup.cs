@@ -2,16 +2,7 @@
 {
     using System.Reflection;
 
-    using StrumskaSlava.Data;
-    using StrumskaSlava.Data.Common;
-    using StrumskaSlava.Data.Common.Repositories;
-    using StrumskaSlava.Data.Models;
-    using StrumskaSlava.Data.Repositories;
-    using StrumskaSlava.Data.Seeding;
-    using StrumskaSlava.Services.Data;
-    using StrumskaSlava.Services.Mapping;
-    using StrumskaSlava.Services.Messaging;
-    using StrumskaSlava.Web.ViewModels;
+    using CloudinaryDotNet;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -24,7 +15,18 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using CloudinaryDotNet;
+
+    using StrumskaSlava.Data;
+    using StrumskaSlava.Data.Common;
+    using StrumskaSlava.Data.Common.Repositories;
+    using StrumskaSlava.Data.Models;
+    using StrumskaSlava.Data.Repositories;
+    using StrumskaSlava.Data.Seeding;
+    using StrumskaSlava.Middlewares;
+    using StrumskaSlava.Services.Data;
+    using StrumskaSlava.Services.Mapping;
+    using StrumskaSlava.Services.Messaging;
+    using StrumskaSlava.Web.ViewModels;
 
     public class Startup
     {
@@ -46,7 +48,7 @@
             services
                 .AddIdentity<ApplicationUser, ApplicationRole>(options =>
                 {
-                    options.Password.RequiredLength = 3;
+                    options.Password.RequiredLength = 6;
                     options.Password.RequireDigit = false;
                     options.Password.RequiredUniqueChars = 0;
                     options.Password.RequireLowercase = false;
@@ -131,6 +133,7 @@
                 }
 
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+
             }
 
             if (env.IsDevelopment())
@@ -148,6 +151,8 @@
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+
+            app.UseSeedAdminUserMiddleware();
 
             app.UseMvc(routes =>
             {

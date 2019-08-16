@@ -13,6 +13,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190729191538_AddDbModels.cs" />
     <Compile Remove="Migrations\20190729191538_AddDbModels.Designer.cs" />
+    <Compile Remove="Migrations\20190816111303_AddedUserRoleEnum.cs" />
+    <Compile Remove="Migrations\20190816111303_AddedUserRoleEnum.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

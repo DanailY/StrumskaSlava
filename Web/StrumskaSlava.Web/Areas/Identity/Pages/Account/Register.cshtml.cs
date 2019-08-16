@@ -1,6 +1,7 @@
 ﻿namespace StrumskaSlava.Web.Areas.Identity.Pages.Account
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
@@ -58,8 +59,14 @@
                 };
 
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
+
                 if (result.Succeeded)
                 {
+                    if (this.userManager.Users.Any())
+                    {
+                        await this.userManager.AddToRoleAsync(user, "User");
+                    }
+
                     this.logger.LogInformation("User created a new account with password.");
 
                     var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
