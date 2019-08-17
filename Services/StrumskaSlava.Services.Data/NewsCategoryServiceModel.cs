@@ -3,7 +3,7 @@
     using StrumskaSlava.Data.Models;
     using StrumskaSlava.Services.Mapping;
 
-    public class NewsCategoryServiceModel : IMapFrom<NewsCategory>, IMapTo<NewsCategory>
+    public class NewsCategoryServiceModel : IMapTo<NewsCategory>, IMapFrom<NewsCategory>
     {
         public string Id { get; set; }
 

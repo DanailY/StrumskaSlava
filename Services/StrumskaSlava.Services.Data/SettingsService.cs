@@ -1,9 +1,11 @@
 ﻿namespace StrumskaSlava.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using StrumskaSlava.Data.Common.Repositories;
     using StrumskaSlava.Data.Models;
+    using StrumskaSlava.Services.Mapping;
 
     public class SettingsService : ISettingsService
     {
@@ -17,6 +19,11 @@
         public int GetCount()
         {
             return this.settingsRepository.All().Count();
+        }
+
+        public IEnumerable<T> GetAll<T>()
+        {
+            return this.settingsRepository.All().To<T>().ToList();
         }
     }
 }

@@ -29,6 +29,7 @@
     using StrumskaSlava.Services.Messaging;
     using StrumskaSlava.Web.BindingModels.News;
     using StrumskaSlava.Web.ViewModels;
+    using StrumskaSlava.Web.ViewModels.Home.Index;
 
     public class Startup
     {
@@ -126,7 +127,8 @@
         {
             AutoMapperConfig.RegisterMappings(
                 typeof(ErrorViewModel).GetTypeInfo().Assembly,
-                typeof(NewsCategoryCreateBindingModel).GetTypeInfo().Assembly);
+                typeof(NewsCategoryCreateBindingModel).GetTypeInfo().Assembly,
+                typeof(NewsCategoryServiceModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
@@ -157,7 +159,7 @@
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
-            
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");

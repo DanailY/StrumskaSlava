@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
+    using Microsoft.EntityFrameworkCore;
     using StrumskaSlava.Data;
     using StrumskaSlava.Data.Models;
     using StrumskaSlava.Services.Data;
@@ -17,12 +18,19 @@
             this.context = context;
         }
 
+        public async Task<bool> CreateNews(NewsServiceModel newsServiceModel)
+        {
+            News news = newsServiceModel.To<News>();
+
+            this.context.News.Add(news);
+            int resutl = await this.context.SaveChangesAsync();
+
+            return resutl > 0;
+        }
+
         public async Task<bool> CreateNewsCategory(NewsCategoryServiceModel newsCategoryServiceModel)
         {
-            NewsCategory newsCategory = new NewsCategory
-            {
-                Name = newsCategoryServiceModel.Name,
-            };
+            NewsCategory newsCategory = newsCategoryServiceModel.To<NewsCategory>();
 
             this.context.NewsCategories.Add(newsCategory);
             int result = await this.context.SaveChangesAsync();

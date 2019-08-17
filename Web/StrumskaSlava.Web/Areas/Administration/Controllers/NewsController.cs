@@ -8,6 +8,7 @@
     using Microsoft.AspNetCore.Mvc;
     using StrumskaSlava.Services;
     using StrumskaSlava.Services.Data;
+    using StrumskaSlava.Services.Mapping;
     using StrumskaSlava.Web.BindingModels.News;
 
     public class NewsController : AdministrationController
@@ -28,12 +29,28 @@
         [HttpPost("/Administration/News/Category/Create")]
         public async Task<IActionResult> CreateCategoryNews(NewsCategoryCreateBindingModel newsCategoryCreateBindingModel)
         {
-            NewsCategoryServiceModel newsCategoryServiceModel = new NewsCategoryServiceModel
-            {
-                Name = newsCategoryCreateBindingModel.Name,
-            };
+            NewsCategoryServiceModel newsCategoryServiceModel = newsCategoryCreateBindingModel.To<NewsCategoryServiceModel>();
 
             await this.newsService.CreateNewsCategory(newsCategoryServiceModel);
+
+            return this.Redirect("/");
+        }
+
+        [HttpGet("/Administration/News/Create")]
+        public async Task<IActionResult> CreateNews()
+        {
+            return this.View("Create");
+        }
+
+        [HttpPost("/Administration/News/Create")]
+        public async Task<IActionResult> CreateNews(NewsCreateBindingModel newsCreateBindingModel)
+        {
+            //NewsServiceModel NewsServiceModel = new NewsServiceModel
+            //{
+            //    Name = newsCreateBindingModel.Name,
+            //};
+
+            //await this.newsService.CreateNewsCategory(newsCategoryServiceModel);
 
             return this.Redirect("/");
         }
