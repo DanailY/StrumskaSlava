@@ -3,22 +3,20 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-
+    using Microsoft.AspNetCore.Http;
     using StrumskaSlava.Data.Common.Models;
 
     public class News : BaseModel<string>, IDeletableEntity
     {
-        public DateTime IssuedOn { get; set; }
+        public string Title { get; set; }
 
-        public int Quantity { get; set; }
+        public string Content { get; set; }
 
-        public Product Product { get; set; }
+        public string Picture { get; set; }
 
-        public string ProductId { get; set; }
+        public NewsCategory NewsCategory { get; set; }
 
-        public ApplicationUser User { get; set; }
-
-        public string UserId { get; set; }
+        public string NewsCategoryId { get; set; }
 
         public bool IsDeleted { get; set; }
 

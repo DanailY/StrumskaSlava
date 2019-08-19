@@ -1,7 +1,8 @@
-﻿@model StrumskaSlava.Web.BindingModels.News.NewsCreateBindingModel
+﻿@using StrumskaSlava.Web.ViewModels.News.Create
+@model StrumskaSlava.Web.BindingModels.News.NewsCreateBindingModel
 
 @{
-    ViewData["Title"] = "Създай новина";
+    ViewData["Title"] = "Създаване на новини";
 }
 
 <h1 class="text-dark font-weight-bold text-center p-3 w-60 mx-auto rounded mt-3">Създай Новина</h1>
@@ -34,7 +35,7 @@
             <div class="d-flex justify-content-center">
                 <label asp-for="Content" class="text-primary">Съдържание</label>
             </div>
-            <textarea asp-for="Content" type="text" id="content" class="form-control" placeholder="Съдържание" required autofocus></textarea>
+            <textarea asp-for="Content" type="text" id="content" class="form-control col-md-12" rows="7" placeholder="Съдържание" required autofocus></textarea>
             <span asp-validation-for="Content" class="text-danger"></span>
         </div>
 
@@ -45,19 +46,19 @@
         <div class="d-flex justify-content-center">
             <label asp-for="NewsCategory" class="text-primary">Категория Новини</label>
         </div>
-        <select class="form-control text-primary" id="type" asp-for="NewsCategory">
+        <select class="form-control text-primary" id="category" asp-for="NewsCategory">
             <option selected disabled>--- Иберете Категория ---</option>
-            @*@foreach (var type in (IEnumerable<>)this.ViewData["types"])
+            @foreach (var category in ((IEnumerable<NewsCreateNewsCategoryViewModel>)this.ViewData["categories"]))
             {
-            <option value="@type.Name">@type.Name</option>
-            }*@
+                <option value="@category.Name">@category.Name</option>
+            }
         </select>
         <span asp-validation-for="NewsCategory" class="text-danger"></span>
     </div>
 
 
     <div class="d-flex justify-content-center mt-3">
-        <button class="btn btn-lg btn-primary btn-block mt-3  w-45" type="submit">Създай</button>
+        <button class="btn btn-lg btn-primary btn-block mt-3 w-45" type="submit">Създай</button>
     </div>
 </form>
 

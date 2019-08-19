@@ -10,8 +10,8 @@
 
         public string Title { get; set; }
 
-        public string Content { get; set; }
-
         public string Picture { get; set; }
+
+        public string NewsCategory{ get; set; }
     }
 }

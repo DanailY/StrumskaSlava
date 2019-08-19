@@ -1,8 +1,37 @@
-﻿@{
-    this.ViewData["Title"] = "Home Page";
+﻿@model List<StrumskaSlava.Web.ViewModels.Home.Index.NewsHomeViewModel>
+
+@{
+    this.ViewData["Title"] = "Начало";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to StrumskaSlava!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row mt-3">
+    <div class="col-md-12 mb-3">
+        <div class="section-title">
+            <h2>Последни новини</h2>
+        </div>
+    </div>
+
+    <!-- post -->
+    @foreach (var news in Model)
+    {
+
+        <div class="col-md-4">
+            <div class="post">
+                <a class="post-img img-thumbnail" href="/News/Details/@news.Id"><img src="@news.Picture" alt=""></a>
+                <div class="post-body">
+                    <div class="post-meta">
+                        <a class="post-category" href="">@news.NewsCategory</a>
+                        <span class="post-date">March 27, 2018</span>
+                    </div>
+                    <h5 class="post-title"><a href="/News/Details/@news.Id">@news.Title</a></h5>
+                </div>
+
+            </div>
+        </div>
+    }
+
+    <div class="d-flex flex-row-reverse float-right">
+        <a href="/News/All" class="btn btn-lg btn-primary mt-3 w-100 " role="button" aria-pressed="true">Виж всички</a>
+    </div>
 </div>
+<hr />

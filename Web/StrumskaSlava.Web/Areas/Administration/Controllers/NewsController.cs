@@ -6,18 +6,22 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
     using StrumskaSlava.Services;
     using StrumskaSlava.Services.Data;
     using StrumskaSlava.Services.Mapping;
     using StrumskaSlava.Web.BindingModels.News;
+    using StrumskaSlava.Web.ViewModels.News.Create;
 
     public class NewsController : AdministrationController
     {
         private readonly INewsService newsService;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public NewsController(INewsService newsService)
+        public NewsController(INewsService newsService, ICloudinaryService cloudinaryService)
         {
             this.newsService = newsService;
+            this.cloudinaryService = cloudinaryService;
         }
 
         [HttpGet("/Administration/News/Category/Create")]
@@ -36,21 +40,47 @@
             return this.Redirect("/");
         }
 
-        [HttpGet("/Administration/News/Create")]
-        public async Task<IActionResult> CreateNews()
+        [HttpGet(Name = "Create")]
+        public async Task<IActionResult> Create()
         {
-            return this.View("Create");
+            var allNewsCategory = await this.newsService.GetAllNewsCategory().ToListAsync();
+
+            this.ViewData["categories"] = allNewsCategory
+                .Select(newsCategory => new NewsCreateNewsCategoryViewModel
+                {
+                    Name = newsCategory.Name,
+                })
+                .ToList();
+
+            return this.View();
         }
 
-        [HttpPost("/Administration/News/Create")]
-        public async Task<IActionResult> CreateNews(NewsCreateBindingModel newsCreateBindingModel)
+        [HttpPost(Name = "Create")]
+        public async Task<IActionResult> Create(NewsCreateBindingModel newsCreateBindingModel)
         {
-            //NewsServiceModel NewsServiceModel = new NewsServiceModel
-            //{
-            //    Name = newsCreateBindingModel.Name,
-            //};
+            if (!this.ModelState.IsValid)
+            {
+                var allNewsCategory = await this.newsService.GetAllNewsCategory().ToListAsync();
 
-            //await this.newsService.CreateNewsCategory(newsCategoryServiceModel);
+                this.ViewData["categories"] = allNewsCategory
+                    .Select(newsCategory => new NewsCategoryCreateBindingModel
+                    {
+                        Name = newsCategory.Name,
+                    })
+                    .ToList();
+
+                return this.View();
+            }
+
+            string pictureUrl = await this.cloudinaryService
+                .UploadPictureAync(newsCreateBindingModel.Picture, newsCreateBindingModel.Title);
+
+            NewsServiceModel newsServiceModel = newsCreateBindingModel.To<NewsServiceModel>();
+
+            newsServiceModel.Picture = pictureUrl;
+
+
+            await this.newsService.Create(newsServiceModel);
 
             return this.Redirect("/");
         }

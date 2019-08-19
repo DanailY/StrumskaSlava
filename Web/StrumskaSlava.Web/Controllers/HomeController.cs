@@ -1,12 +1,35 @@
 ﻿namespace StrumskaSlava.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using StrumskaSlava.Services;
+    using StrumskaSlava.Web.ViewModels.Home.Index;
 
     public class HomeController : BaseController
     {
-        public IActionResult Index()
+        private readonly INewsService newsService;
+
+        public HomeController(INewsService newsService)
         {
-            return this.View();
+            this.newsService = newsService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            List<NewsHomeViewModel> topThreeNews = await this.newsService.GetLastThreeNews()
+                .Select(news => new NewsHomeViewModel
+                {
+                    Id = news.Id,
+                    Title = news.Title,
+                    Picture = news.Picture,
+                    NewsCategory = news.NewsCategory.Name,
+                })
+                .ToListAsync();
+
+            return this.View(topThreeNews);
         }
 
         public IActionResult Privacy()

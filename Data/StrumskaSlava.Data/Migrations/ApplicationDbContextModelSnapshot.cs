@@ -243,17 +243,27 @@ namespace StrumskaSlava.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CategoryId");
+                    b.Property<string>("Content");
 
                     b.Property<DateTime>("CreatedOn");
 
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<DateTime?>("ModifiedOn");
+
+                    b.Property<string>("NewsCategoryId");
+
+                    b.Property<string>("Picture");
 
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("NewsCategoryId");
 
                     b.ToTable("News");
                 });
@@ -402,9 +412,9 @@ namespace StrumskaSlava.Data.Migrations
 
             modelBuilder.Entity("StrumskaSlava.Data.Models.News", b =>
                 {
-                    b.HasOne("StrumskaSlava.Data.Models.NewsCategory", "Category")
+                    b.HasOne("StrumskaSlava.Data.Models.NewsCategory", "NewsCategory")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("NewsCategoryId");
                 });
 
             modelBuilder.Entity("StrumskaSlava.Data.Models.Order", b =>

@@ -4,6 +4,7 @@ namespace StrumskaSlava.Web.BindingModels.News
 {
     using AutoMapper;
     using Microsoft.AspNetCore.Http;
+    using StrumskaSlava.Data.Models;
     using StrumskaSlava.Services.Data;
     using StrumskaSlava.Services.Mapping;
     using System;
