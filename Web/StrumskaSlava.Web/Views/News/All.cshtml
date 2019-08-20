@@ -1,13 +1,13 @@
-﻿@model List<StrumskaSlava.Web.ViewModels.Home.Index.NewsHomeViewModel>
+﻿@model IEnumerable<StrumskaSlava.Web.ViewModels.News.All.NewsAllViewModel>
 
 @{
-    this.ViewData["Title"] = "Начало";
+    ViewData["Title"] = "Новини";
 }
 
 <div class="row mt-3">
     <div class="col-md-12 mb-3">
         <div class="section-title">
-            <h2>Последни новини</h2>
+            <h2>Hовини</h2>
         </div>
     </div>
     @foreach (var news in Model)
@@ -26,9 +26,4 @@
             </div>
         </div>
     }
-
-    <div class="d-flex flex-row-reverse">
-        <a href="/News/All" class="btn btn-lg btn-primary mt-3 w-100 " role="button" aria-pressed="true">Виж всички</a>
-    </div>
 </div>
-<hr />

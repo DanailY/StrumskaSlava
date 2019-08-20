@@ -1,9 +1,9 @@
 ﻿namespace StrumskaSlava.Services.Data
 {
+    using System;
 
     using StrumskaSlava.Data.Models;
     using StrumskaSlava.Services.Mapping;
-    using System;
 
     public class NewsServiceModel : IMapFrom<News>, IMapTo<News>
     {

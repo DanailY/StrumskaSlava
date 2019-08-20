@@ -136,7 +136,7 @@
 
             await this.newsService.Edit(id, newsServiceModel);
 
-            return this.Redirect($"/Administration/News/Details/{id}");
+            return this.Redirect($"/News/Details/{id}");
         }
 
         [HttpGet(Name = "Delete")]
