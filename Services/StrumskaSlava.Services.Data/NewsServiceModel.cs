@@ -3,6 +3,7 @@
 
     using StrumskaSlava.Data.Models;
     using StrumskaSlava.Services.Mapping;
+    using System;
 
     public class NewsServiceModel : IMapFrom<News>, IMapTo<News>
     {
@@ -17,5 +18,7 @@
         public string NewsCategoryId { get; set; }
 
         public NewsCategoryServiceModel NewsCategory { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

@@ -13,10 +13,18 @@
 
         Task<bool> Create(NewsServiceModel newsServiceModel);
 
+        Task<bool> Delete(string id);
+
+        Task<bool> Edit(string id, NewsServiceModel newsServiceModel);
+
         IQueryable<NewsCategoryServiceModel> GetAllNewsCategory();
 
         IQueryable<NewsServiceModel> GetAllNews();
 
         IQueryable<NewsServiceModel> GetLastThreeNews();
+
+        Task<NewsServiceModel> GetById(string id);
+
+        Task<NewsCategoryServiceModel> GetCategoryByName(string name);
     }
 }

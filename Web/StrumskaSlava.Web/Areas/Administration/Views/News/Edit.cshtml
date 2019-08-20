@@ -1,0 +1,73 @@
+﻿@using StrumskaSlava.Web.ViewModels.News.Create
+@model StrumskaSlava.Web.BindingModels.News.Edit.NewsEditBindingModel
+
+@{
+    ViewData["Title"] = "Редактиране";
+}
+
+<h1 class="text-dark font-weight-bold text-center p-3 w-60 mx-auto rounded mt-3">Редактирай Новина</h1>
+
+<form class="form border-primary-5 rounded p-3 w-60 mx-auto mt-auto" asp-action="/Administration/News/Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <hr class="w-95" />
+    <div id="title-and-content-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Title" class="text-primary">Заглавие</label>
+            </div>
+            <input asp-for="Title" type="text" id="title" class="form-control" placeholder="Заглавие" required autofocus>
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Picture" class="text-primary">Снимка</label>
+            </div>
+            <input type="file"
+                   class="form-control-file text-primary text-center"
+                   id="picture"
+                   placeholder="Снимка..."
+                   asp-for="Picture">
+            <span asp-validation-for="Picture" class="text-danger"></span>
+        </div>
+    </div>
+    <div id="name-and-price-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-95">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Content" class="text-primary">Съдържание</label>
+            </div>
+            <textarea asp-for="Content" type="text" id="content" class="form-control col-md-12" rows="7" placeholder="Съдържание" required autofocus></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+
+    </div>
+
+    <div class="form-group mx-auto w-45">
+        <hr class="w-95" />
+        <div class="d-flex justify-content-center">
+            <label asp-for="NewsCategory" class="text-primary">Категория Новини</label>
+        </div>
+        <select class="form-control text-primary" id="category" asp-for="NewsCategory">
+            @foreach (var category in (IEnumerable<NewsCreateNewsCategoryViewModel>)this.ViewData["categories"])
+            {
+                @if (category.Name == Model.NewsCategory)
+                {
+                    <option value="@category.Name" selected>@category.Name</option>
+                }
+                else
+                {
+                    <option value="@category.Name">@category.Name</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="NewsCategory" class="text-danger"></span>
+    </div>
+
+
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-lg btn-primary btn-block mt-3 w-45" type="submit">Редактирай</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
