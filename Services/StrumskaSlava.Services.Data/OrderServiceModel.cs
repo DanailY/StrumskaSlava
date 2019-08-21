@@ -1,10 +1,14 @@
-﻿namespace StrumskaSlava.Data.Models
+﻿namespace StrumskaSlava.Services.Data
 {
+    using System;
 
-    using StrumskaSlava.Data.Common.Models;
+    using StrumskaSlava.Data.Models;
+    using StrumskaSlava.Services.Mapping;
 
-    public class Order : BaseModel<string>
+    public class OrderServiceModel : IMapFrom<Order>, IMapTo<Order>
     {
+        public string Id { get; set; }
+
         public int Quantity { get; set; }
 
         public Product Product { get; set; }
@@ -18,6 +22,5 @@
         public string OrderId { get; set; }
 
         public OrderStatus OrderStatus { get; set; }
-
     }
 }
