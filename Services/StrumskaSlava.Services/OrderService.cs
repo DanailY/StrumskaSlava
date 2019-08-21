@@ -6,6 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using StrumskaSlava.Common;
     using StrumskaSlava.Data;
     using StrumskaSlava.Data.Models;
     using StrumskaSlava.Services.Data;
@@ -25,7 +26,7 @@
             Order orderFromDb = await this.context.Orders.SingleOrDefaultAsync(order => order.Id == orderId);
 
             orderFromDb.OrderStatus = await this.context.OrderStatuses
-                .SingleOrDefaultAsync(orderStatus => orderStatus.Name == "Completed");
+                .SingleOrDefaultAsync(orderStatus => orderStatus.Name == GlobalConstants.OrderStatusCompleted);
 
             this.context.Update(orderFromDb);
             int result = await this.context.SaveChangesAsync();
@@ -37,7 +38,7 @@
         {
             Order order = orderServiceModel.To<Order>();
 
-            order.OrderStatus = await this.context.OrderStatuses.SingleOrDefaultAsync(orderStatus => orderStatus.Name == "Active");
+            order.OrderStatus = await this.context.OrderStatuses.SingleOrDefaultAsync(orderStatus => orderStatus.Name == GlobalConstants.OrderStatusActive);
 
             order.CreatedOn = DateTime.UtcNow;
 
@@ -55,7 +56,7 @@
         public async Task SetOrdersToReceipt(Receipt receipt)
         {
             List<Order> ordersFromDb = await this.context.Orders
-                .Where(order => order.UserId == receipt.RecipientId && order.OrderStatus.Name == "Active").ToListAsync();
+                .Where(order => order.UserId == receipt.RecipientId && order.OrderStatus.Name == GlobalConstants.OrderStatusActive).ToListAsync();
 
             receipt.Orders = ordersFromDb;
         }

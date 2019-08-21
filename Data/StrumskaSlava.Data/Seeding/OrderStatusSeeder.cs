@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-
+    using StrumskaSlava.Common;
     using StrumskaSlava.Data.Models;
 
     internal class OrderStatusSeeder : ISeeder
@@ -16,12 +16,12 @@
             {
                 dbContext.OrderStatuses.Add(new OrderStatus
                 {
-                    Name = "Active",
+                    Name = GlobalConstants.OrderStatusActive,
                 });
 
                 dbContext.OrderStatuses.Add(new OrderStatus
                 {
-                    Name = "Completed",
+                    Name = GlobalConstants.OrderStatusCompleted,
                 });
 
                 await dbContext.SaveChangesAsync();

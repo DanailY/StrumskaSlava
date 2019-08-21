@@ -16,5 +16,10 @@
 
         public const string AdminPassword = "123456";
 
+        public const string OrderStatusActive = "Active";
+
+        public const string OrderStatusCompleted = "Completed";
+
+
     }
 }
