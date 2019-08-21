@@ -42,6 +42,7 @@
 
         public DbSet<OrderStatus> OrderStatuses { get; set; }
 
+        public DbSet<Receipt> Receipts { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

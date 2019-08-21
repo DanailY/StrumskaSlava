@@ -301,6 +301,8 @@ namespace StrumskaSlava.Data.Migrations
 
                     b.Property<int>("Quantity");
 
+                    b.Property<string>("ReceiptId");
+
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
@@ -308,6 +310,8 @@ namespace StrumskaSlava.Data.Migrations
                     b.HasIndex("OrderStatusId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("ReceiptId");
 
                     b.HasIndex("UserId");
 
@@ -370,6 +374,24 @@ namespace StrumskaSlava.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductTypes");
+                });
+
+            modelBuilder.Entity("StrumskaSlava.Data.Models.Receipt", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
+                    b.Property<string>("RecipientId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipientId");
+
+                    b.ToTable("Receipts");
                 });
 
             modelBuilder.Entity("StrumskaSlava.Data.Models.Setting", b =>
@@ -459,6 +481,10 @@ namespace StrumskaSlava.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ProductId");
 
+                    b.HasOne("StrumskaSlava.Data.Models.Receipt")
+                        .WithMany("Orders")
+                        .HasForeignKey("ReceiptId");
+
                     b.HasOne("StrumskaSlava.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
@@ -469,6 +495,13 @@ namespace StrumskaSlava.Data.Migrations
                     b.HasOne("StrumskaSlava.Data.Models.ProductType", "ProductType")
                         .WithMany()
                         .HasForeignKey("ProductTypeId");
+                });
+
+            modelBuilder.Entity("StrumskaSlava.Data.Models.Receipt", b =>
+                {
+                    b.HasOne("StrumskaSlava.Data.Models.ApplicationUser", "Recipient")
+                        .WithMany()
+                        .HasForeignKey("RecipientId");
                 });
 #pragma warning restore 612, 618
         }
