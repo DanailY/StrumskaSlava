@@ -188,6 +188,10 @@ hr.hr-2 {
         transition: 0.2s opacity;
     }
 
+#productAllPrice {
+    font-weight: bold;
+    font-size: 15px;
+}
 /*----------------------------*\
 	post thumb
 \*----------------------------*/

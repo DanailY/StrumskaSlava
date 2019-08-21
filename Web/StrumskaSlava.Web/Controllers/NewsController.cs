@@ -29,6 +29,7 @@
                 Title = news.Title,
                 NewsCategory = news.NewsCategory.Name,
                 Picture = news.Picture,
+                CreatedOn = news.CreatedOn,
             }).ToListAsync();
 
             return this.View(allNews);

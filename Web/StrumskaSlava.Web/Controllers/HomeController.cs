@@ -26,6 +26,7 @@
                     Title = news.Title,
                     Picture = news.Picture,
                     NewsCategory = news.NewsCategory.Name,
+                    CreatedOn = news.CreatedOn,
                 })
                 .ToListAsync();
 

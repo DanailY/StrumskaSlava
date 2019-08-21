@@ -29,7 +29,7 @@
             {
                 Id = product.Id,
                 Name = product.Name,
-                Description = product.Description,
+                Price = product.Price,
                 Picture = product.Picture,
                 ProductType = product.ProductType.Name,
             }).ToListAsync();
