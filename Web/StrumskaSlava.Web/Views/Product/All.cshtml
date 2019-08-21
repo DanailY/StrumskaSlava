@@ -1,0 +1,29 @@
+﻿@model IEnumerable<StrumskaSlava.Web.ViewModels.Product.All.ProductAllViewModel>
+
+@{
+    ViewData["Title"] = "Продукти";
+}
+
+<div class="row mt-3">
+    <div class="col-md-12 mb-3">
+        <div class="section-title">
+            <h2>Продукти</h2>
+        </div>
+    </div>
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <div class="post">
+                <a class="post-img img-thumbnail" href="/Product/Details/@product.Id"><img src="@product.Picture" alt=""></a>
+                <div class="post-body">
+                    <div class="post-meta">
+                        <a class="post-category" href="">@product.ProductType</a>
+                        <span class="post-date">March 27, 2018</span>
+                    </div>
+                    <h5 class="post-title"><a href="/News/Details/@product.Id">@product.Name</a></h5>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

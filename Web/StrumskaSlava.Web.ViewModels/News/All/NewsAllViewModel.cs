@@ -1,8 +1,8 @@
-﻿using StrumskaSlava.Services.Data;
-using StrumskaSlava.Services.Mapping;
-
-namespace StrumskaSlava.Web.ViewModels.News.All
+﻿namespace StrumskaSlava.Web.ViewModels.News.All
 {
+    using StrumskaSlava.Services.Data;
+    using StrumskaSlava.Services.Mapping;
+
     public class NewsAllViewModel : IMapFrom<NewsServiceModel>
     {
         public string Id { get; set; }
