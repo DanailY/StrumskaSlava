@@ -16,5 +16,7 @@
         public string Picture { get; set; }
 
         public ProductDeleteProductTypeViewModel ProductType { get; set; }
+
+        public string Description { get; set; }
     }
 }
