@@ -1,0 +1,18 @@
+﻿@model StrumskaSlava.Web.BindingModels.Product.Create.ProductTypeCreateBindingModel
+
+@{
+    ViewData["Title"] = "Тип продукт";
+}
+
+<form class="form border-primary-5 rounded p-1 w-25 mx-auto mt-3" asp-action="/Administration/Product/Type/Create">
+    <h1 class="h3 mb-3 font-weight-normal">Тип Продукт</h1>
+    <label asp-for="Name" class="sr-only">Name</label>
+    <input asp-for="Name" type="text" id="productType" class="form-control" placeholder="Тип Продукт" required autofocus>
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+    <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Създай</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

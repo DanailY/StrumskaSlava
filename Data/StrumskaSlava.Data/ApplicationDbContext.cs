@@ -38,6 +38,9 @@
 
         public DbSet<MatchSchedule> MatchSchedules { get; set; }
 
+        public DbSet<ProductType> ProductTypes { get; set; }
+
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

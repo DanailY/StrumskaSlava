@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StrumskaSlava.Data;
 
 namespace StrumskaSlava.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190819155347_UpdatingNewsAgain")]
+    partial class UpdatingNewsAgain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,8 +257,6 @@ namespace StrumskaSlava.Data.Migrations
 
                     b.Property<string>("NewsCategoryId");
 
-                    b.Property<string>("Picture");
-
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
@@ -323,39 +323,21 @@ namespace StrumskaSlava.Data.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<string>("Description");
-
                     b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name");
-
-                    b.Property<string>("Picture");
 
                     b.Property<decimal>("Price");
 
-                    b.Property<string>("ProductTypeId");
+                    b.Property<int>("ProductType");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<int>("Size");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductTypeId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("StrumskaSlava.Data.Models.ProductType", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("StrumskaSlava.Data.Models.Setting", b =>
@@ -444,13 +426,6 @@ namespace StrumskaSlava.Data.Migrations
                     b.HasOne("StrumskaSlava.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("StrumskaSlava.Data.Models.Product", b =>
-                {
-                    b.HasOne("StrumskaSlava.Data.Models.ProductType", "ProductType")
-                        .WithMany()
-                        .HasForeignKey("ProductTypeId");
                 });
 #pragma warning restore 612, 618
         }

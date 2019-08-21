@@ -15,6 +15,8 @@
     <Compile Remove="Migrations\20190729191538_AddDbModels.Designer.cs" />
     <Compile Remove="Migrations\20190816111303_AddedUserRoleEnum.cs" />
     <Compile Remove="Migrations\20190816111303_AddedUserRoleEnum.Designer.cs" />
+    <Compile Remove="Migrations\20190821071720_AddedProductTypeModel.cs" />
+    <Compile Remove="Migrations\20190821071720_AddedProductTypeModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
