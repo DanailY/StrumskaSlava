@@ -1,0 +1,38 @@
+﻿@model StrumskaSlava.Web.ViewModels.Product.Details.ProductDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="d-flex justify-content-center mt-3">
+    <h3 class="text-center">@Model.Name</h3>
+</div>
+<div class="d-flex justify-content-between row mt-3">
+    <div class="col-md-5">
+        <img src="@Model.Picture" class="img-thumbnail" />
+
+    </div>
+    <div class="album-tracks col-md-6">
+        <h3 class="text-center">Описание</h3>
+        <p>@Model.Description</p>
+        <hr />
+        <h1 class="text-center">Цена: @Model.Price</h1>
+        <hr />
+        <div class="d-flex justify-content-start">
+            @if (!this.User.Identity.IsAuthenticated)
+            {
+                <a class="btn bg-primary text-white" href="/Identity/Account/Login">Поръчай</a>
+            }
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <a class="btn bg-primary text-white mr-1" href="/Order/Create">Поръчай</a>
+            }
+            @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+            {
+                <a class="btn bg-primary text-white mr-1" href="/Administration/Product/Edit/@Model.Id">Редактирай</a>
+                <a class="btn bg-danger text-white mr-1" href="/Administration/Product/Delete/@Model.Id">Изтрий</a>
+            }
+        </div>
+    </div>
+</div>
+<hr />

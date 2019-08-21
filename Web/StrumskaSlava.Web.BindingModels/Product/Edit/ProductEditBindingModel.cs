@@ -19,9 +19,6 @@
         public decimal Price { get; set; }
 
         [Required]
-        public DateTime ManufactureOn { get; set; }
-
-        [Required]
         public IFormFile Picture { get; set; }
 
         [Required]

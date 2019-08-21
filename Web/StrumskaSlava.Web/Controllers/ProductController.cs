@@ -7,8 +7,11 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+
     using StrumskaSlava.Services;
+    using StrumskaSlava.Services.Mapping;
     using StrumskaSlava.Web.ViewModels.Product.All;
+    using StrumskaSlava.Web.ViewModels.Product.Details;
 
     public class ProductController : Controller
     {
@@ -32,6 +35,20 @@
             }).ToListAsync();
 
             return this.View(allProducts);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            ProductDetailsViewModel productDetailsViewModel = (await this.productService.GetById(id)).To<ProductDetailsViewModel>();
+
+            if (productDetailsViewModel == null)
+            {
+                //TODO: Error Handling
+                return this.Redirect("/");
+            }
+
+            return this.View(productDetailsViewModel);
         }
     }
 }

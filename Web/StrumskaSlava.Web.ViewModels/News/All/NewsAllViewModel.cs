@@ -2,6 +2,7 @@
 {
     using StrumskaSlava.Services.Data;
     using StrumskaSlava.Services.Mapping;
+    using System;
 
     public class NewsAllViewModel : IMapFrom<NewsServiceModel>
     {
@@ -12,5 +13,7 @@
         public string Picture { get; set; }
 
         public string NewsCategory { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

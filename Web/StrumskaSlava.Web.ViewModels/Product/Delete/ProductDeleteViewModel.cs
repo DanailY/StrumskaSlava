@@ -11,8 +11,6 @@
 
         public decimal Price { get; set; }
 
-        public DateTime ManufactureOn { get; set; }
-
         public string Picture { get; set; }
 
         public ProductDeleteProductTypeViewModel ProductType { get; set; }

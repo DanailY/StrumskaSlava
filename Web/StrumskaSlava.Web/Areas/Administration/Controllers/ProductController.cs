@@ -137,7 +137,7 @@
 
             await this.productService.Edit(id, productServiceModel);
 
-            return this.Redirect("/");
+            return this.Redirect($"/Product/Details/{id}");
         }
 
         [HttpGet(Name = "Delete")]
@@ -154,9 +154,9 @@
 
             var allProductTypes = await this.productService.GetAllProductTypes().ToListAsync();
 
-            this.ViewData["types"] = allProductTypes.Select(productType => new ProductCreateProductTypeViewModel
+            this.ViewData["types"] = allProductTypes.Select(productType => new ProductDeleteProductTypeViewModel
             {
-                Name = productType.Name, 
+                Name = productType.Name,
             }).ToList();
 
             return this.View(productDeleteViewModel);
@@ -168,7 +168,7 @@
         {
             await this.productService.Delete(id);
 
-            return this.Redirect("/");
+            return this.Redirect("/Product/All");
         }
     }
 }
