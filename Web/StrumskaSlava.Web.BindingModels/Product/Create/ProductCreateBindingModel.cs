@@ -10,7 +10,7 @@
     using StrumskaSlava.Services.Data;
     using StrumskaSlava.Services.Mapping;
 
-    public class ProductCreateInputModel : IMapTo<ProductServiceModel>, IHaveCustomMappings
+    public class ProductCreateBindingModel : IMapTo<ProductServiceModel>, IHaveCustomMappings
     {
         [Required]
         public string Name { get; set; }
@@ -33,7 +33,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration
-                .CreateMap<ProductCreateInputModel, ProductServiceModel>()
+                .CreateMap<ProductCreateBindingModel, ProductServiceModel>()
                 .ForMember(d => d.ProductType, opts => opts.MapFrom(origin => new ProductTypeServiceModel
                 {
                     Name = origin.ProductType

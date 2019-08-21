@@ -11,7 +11,10 @@
     using StrumskaSlava.Services.Data;
     using StrumskaSlava.Services.Mapping;
     using StrumskaSlava.Web.BindingModels.Product.Create;
+    using StrumskaSlava.Web.BindingModels.Product.Edit;
     using StrumskaSlava.Web.ViewModels.Product.Create;
+    using StrumskaSlava.Web.ViewModels.Product.Delete;
+    using StrumskaSlava.Web.ViewModels.Product.Edit;
 
     public class ProductController : AdministrationController
     {
@@ -56,7 +59,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductCreateInputModel productCreateInputModel)
+        public async Task<IActionResult> Create(ProductCreateBindingModel productCreateInputModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -85,88 +88,87 @@
             return this.Redirect("/");
         }
 
-        //[HttpGet(Name = "Edit")]
-        //public async Task<IActionResult> Edit(string id)
-        //{
-        //    ProductEditInputModel productEditInputModel = (await this.productServices.GetById(id)).To<ProductEditInputModel>();
+        [HttpGet(Name = "Edit")]
+        public async Task<IActionResult> Edit(string id)
+        {
+            ProductEditBindingModel productEditInputModel = (await this.productService.GetById(id)).To<ProductEditBindingModel>();
 
-        //    if (productEditInputModel == null)
-        //    {
-        //        //TODO: Error Handling
-        //        return this.Redirect("/");
-        //    }
+            if (productEditInputModel == null)
+            {
+                //TODO: Error Handling
+                return this.Redirect("/");
+            }
 
-        //    var allProductTypes = await this.productServices.GetAllProductTypes().ToListAsync();
+            var allProductTypes = await this.productService.GetAllProductTypes().ToListAsync();
 
-        //    this.ViewData["types"] = allProductTypes
-        //            .Select(productType => new ProductCreateProductTypeViewModel
-        //            {
-        //                Name = productType.Name
-        //            })
-        //            .ToList(); ;
+            this.ViewData["types"] = allProductTypes
+                    .Select(productType => new ProductEditProductTypeViewModel
+                    {
+                        Name = productType.Name, 
+                    })
+                    .ToList(); ;
 
-        //    return this.View(productEditInputModel);
-        //}
+            return this.View(productEditInputModel);
+        }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(string id, ProductEditInputModel productEditInputModel)
-        //{
-        //    if (!this.ModelState.IsValid)
-        //    {
-        //        var allProductTypes = await this.productServices.GetAllProductTypes().ToListAsync();
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, ProductEditBindingModel productEditBindingModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                var allProductTypes = await this.productService.GetAllProductTypes().ToListAsync();
 
-        //        this.ViewData["types"] = allProductTypes
-        //            .Select(productType => new ProductCreateProductTypeViewModel
-        //            {
-        //                Name = productType.Name
-        //            })
-        //            .ToList(); ;
+                this.ViewData["types"] = allProductTypes
+                    .Select(productType => new ProductEditProductTypeViewModel
+                    {
+                        Name = productType.Name,
+                    })
+                    .ToList();
 
-        //        return this.View(productEditInputModel);
-        //    }
+                return this.View(productEditBindingModel);
+            }
 
-        //    string pictureUrl = await this.cloudinaryService
-        //        .UploadPictureAync(productEditInputModel.Picture, productEditInputModel.Name);
+            string pictureUrl = await this.cloudinaryService
+                .UploadPictureAync(productEditBindingModel.Picture, productEditBindingModel.Name);
 
-        //    ProductServiceModel productServiceModel = AutoMapper.Mapper.Map<ProductServiceModel>(productEditInputModel);
+            ProductServiceModel productServiceModel = AutoMapper.Mapper.Map<ProductServiceModel>(productEditBindingModel);
 
-        //    productServiceModel.Picture = pictureUrl;
+            productServiceModel.Picture = pictureUrl;
 
+            await this.productService.Edit(id, productServiceModel);
 
-        //    await this.productServices.Edit(id, productServiceModel);
+            return this.Redirect("/");
+        }
 
-        //    return this.Redirect("/");
-        //}
+        [HttpGet(Name = "Delete")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            ProductDeleteViewModel productDeleteViewModel = (await this.productService.GetById(id)
+               ).To<ProductDeleteViewModel>();
 
-        //[HttpGet(Name = "Delete")]
-        //public async Task<IActionResult> Delete(string id)
-        //{
-        //    ProductDeleteViewModel productDeleteViewModel = (await this.productServices.GetById(id)
-        //       ).To<ProductDeleteViewModel>();
+            if (productDeleteViewModel == null)
+            {
+                // TODO: Error Handling
+                return this.Redirect("/");
+            }
 
-        //    if (productDeleteViewModel == null)
-        //    {
-        //        // TODO: Error Handling
-        //        return this.Redirect("/");
-        //    }
+            var allProductTypes = await this.productService.GetAllProductTypes().ToListAsync();
 
-        //    var allProductTypes = await this.productServices.GetAllProductTypes().ToListAsync();
+            this.ViewData["types"] = allProductTypes.Select(productType => new ProductCreateProductTypeViewModel
+            {
+                Name = productType.Name, 
+            }).ToList();
 
-        //    this.ViewData["types"] = allProductTypes.Select(productType => new ProductCreateProductTypeViewModel
-        //    {
-        //        Name = productType.Name
-        //    }).ToList();
+            return this.View(productDeleteViewModel);
+        }
 
-        //    return this.View(productDeleteViewModel);
-        //}
+        [HttpPost]
+        [Route("/Administration/Product/Delete/{id}")]
+        public async Task<IActionResult> DeleteConfirm(string id)
+        {
+            await this.productService.Delete(id);
 
-        //[HttpPost]
-        //[Route("/Administration/Product/Delete/{id}")]
-        //public async Task<IActionResult> DeleteConfirm(string id)
-        //{
-        //    await this.productServices.Delete(id);
-
-        //    return this.Redirect("/");
-        //}
+            return this.Redirect("/");
+        }
     }
 }
