@@ -8,13 +8,14 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-
+    using StrumskaSlava.Common;
     using StrumskaSlava.Services;
     using StrumskaSlava.Services.Data;
     using StrumskaSlava.Services.Mapping;
     using StrumskaSlava.Web.BindingModels.Product.Order;
     using StrumskaSlava.Web.ViewModels.Product.All;
     using StrumskaSlava.Web.ViewModels.Product.Details;
+    using X.PagedList;
 
     public class ProductController : BaseController
     {
@@ -28,18 +29,26 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(ProductViewModel model)
         {
-            List<ProductAllViewModel> allProducts = await this.productService.GetAllProducts().Select(product => new ProductAllViewModel
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Price = product.Price,
-                Picture = product.Picture,
-                ProductType = product.ProductType.Name,
-            }).ToListAsync();
+            List<ProductAllViewModel> allProducts = await this.productService.GetAllProducts()
+                .OrderByDescending(product => product.CreatedOn)
+                .Select(product => new ProductAllViewModel
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Price = product.Price,
+                    Picture = product.Picture,
+                    ProductType = product.ProductType.Name,
+                }).ToListAsync();
 
-            return this.View(allProducts);
+            int pageNumber = model.PageNumber ?? GlobalConstants.DefaultPageNumber;
+
+            var pageProductsViewMode = allProducts.ToPagedList(pageNumber, GlobalConstants.DefaultPageSize);
+
+            model.ProductAllIndexViewModel = pageProductsViewMode;
+
+            return this.View(model);
         }
 
         [HttpGet]

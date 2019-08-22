@@ -20,6 +20,9 @@
 
         public const string OrderStatusCompleted = "Completed";
 
+        public const int DefaultPageSize = 9;
+
+        public const int DefaultPageNumber = 1;
 
     }
 }
