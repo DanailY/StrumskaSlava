@@ -1,8 +1,9 @@
 ﻿namespace StrumskaSlava.Web.ViewModels.Product.Details
 {
+    using System;
+
     using StrumskaSlava.Services.Data;
     using StrumskaSlava.Services.Mapping;
-    using System;
 
     public class ProductDetailsViewModel : IMapFrom<ProductServiceModel>
     {
@@ -15,6 +16,8 @@
         public decimal Price { get; set; }
 
         public string Picture { get; set; }
+
+        public int Quantity { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

@@ -12,7 +12,7 @@
     using StrumskaSlava.Web.ViewModels.News.Create;
     using StrumskaSlava.Web.ViewModels.News.Details;
 
-    public class NewsController : Controller
+    public class NewsController : BaseController
     {
         private readonly INewsService newsService;
 

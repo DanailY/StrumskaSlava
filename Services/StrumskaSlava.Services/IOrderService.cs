@@ -15,5 +15,9 @@
         Task SetOrdersToReceipt(Receipt receipt);
 
         Task<bool> CompleteOrder(string orderId);
+
+        Task<bool> ReduceQuantity(string orderId);
+
+        Task<bool> IncreaseQuantity(string orderId);
     }
 }

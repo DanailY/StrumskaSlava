@@ -3,23 +3,28 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
     using StrumskaSlava.Services;
+    using StrumskaSlava.Services.Data;
     using StrumskaSlava.Services.Mapping;
+    using StrumskaSlava.Web.BindingModels.Product.Order;
     using StrumskaSlava.Web.ViewModels.Product.All;
     using StrumskaSlava.Web.ViewModels.Product.Details;
 
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private readonly IProductService productService;
+        private readonly IOrderService orderService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IOrderService orderService)
         {
             this.productService = productService;
+            this.orderService = orderService;
         }
 
         [HttpGet]
@@ -49,6 +54,18 @@
             }
 
             return this.View(productDetailsViewModel);
+        }
+
+        [HttpPost(Name = "Order")]
+        public async Task<IActionResult> Order(ProductOrderInputModel productOrderInputModel)
+        {
+            OrderServiceModel orderServiceModel = productOrderInputModel.To<OrderServiceModel>();
+
+            orderServiceModel.UserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            await this.orderService.CreateOrder(orderServiceModel);
+
+            return this.Redirect("/Product/All");
         }
     }
 }

@@ -4,12 +4,11 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Mvc;
     using StrumskaSlava.Data.Common.Repositories;
     using StrumskaSlava.Data.Models;
     using StrumskaSlava.Services.Mapping;
     using StrumskaSlava.Web.ViewModels.Settings;
-
-    using Microsoft.AspNetCore.Mvc;
 
     public class SettingsController : BaseController
     {

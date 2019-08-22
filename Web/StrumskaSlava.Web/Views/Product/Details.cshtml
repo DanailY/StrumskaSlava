@@ -25,7 +25,7 @@
             }
             @if (this.User.Identity.IsAuthenticated)
             {
-                <a class="btn bg-primary text-white mr-1" href="/Order/Create">Поръчай</a>
+                <button class="btn btn-primary text-white font-weight-bold mr-1" data-toggle="modal" data-target="#orderModal">Поръчай</button>
             }
             @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
             {
@@ -36,3 +36,40 @@
     </div>
 </div>
 <hr />
+
+<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderModalLabel">@Model.Name</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="order-form" action="/Product/Order" method="post">
+                    <div class="form-group">
+                        <label for="quantity" class="col-form-label font-weight-bold">Количество</label>
+                        <input type="number"
+                               class="form-control"
+                               id="quantity"
+                               name="quantity"
+                               min="1"
+                               value="1">
+                        <input type="hidden" value="@Model.Id" name="productId" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Затовир</button>
+                <button type="button" class="btn btn-primary" id="complete-order-button">Поръчай</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#complete-order-button').click(function () {
+        $('#order-form').submit();
+    });
+</script>
