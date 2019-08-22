@@ -6,6 +6,7 @@
     <title>@this.ViewData["Title"] - StrumskaSlava</title>
 
     <environment names="Development">
+        <link href="~/css/reset.css" rel="stylesheet" />
         <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true" />
         <link href="~/css/fontawesome.min.css" rel="stylesheet" />
         <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
@@ -14,6 +15,7 @@
         <script src="~/js/popper.min.js"></script>
     </environment>
     <environment names="Staging,Production">
+        <link href="~/css/reset.css" rel="stylesheet" />
         <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
         <link href="~/css/fontawesome.min.css" rel="stylesheet" />
         <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
@@ -24,192 +26,196 @@
 
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="/">
-                <img src="~/Images/StrumskaSlava.png" width="50" height="50" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="container-fluid">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="/">
+                    <img src="~/Images/StrumskaSlava.png" width="50" height="50" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto font-weight-bold">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Начало <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/News/All">Новини</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Клубът</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Галерия</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/Product/All">Магазин</a>
-                    </li>
-                </ul>
-                @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
-                {
-                    <ul class="navbar-nav ml-auto my-2 my-lg-0 font-weight-bold">
-                        <li class="nav-item active font-weight-bold">
-                            <div class="dropdown show" id="products-dropdown">
-                                <a class="nav-link active font-weight-bold dropdown-toggle"
-                                   href="#"
-                                   id="productDropDown"
-                                   data-toggle="dropdown"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Създаване на продукти
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="productDropDown">
-                                    <a class="dropdown-item" href="/Order/Cart">Cart</a>
-                                    <a class="dropdown-item" href="/Receipt/Profile">Receipts</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/Identity/Account/Logout">Logout</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item active font-weight-bold">
-                            <div class="dropdown show" id="products-dropdown">
-                                <a class="nav-link active font-weight-bold dropdown-toggle"
-                                   href="#"
-                                   id="productDropDown"
-                                   data-toggle="dropdown"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Създай
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="productDropDown">
-                                    <a class="dropdown-item" href="/Administration/News/Create">Новини</a>
-                                    <a class="dropdown-item" href="/Administration/News/Category/Create">Категория новини</a>
-                                    <a class="dropdown-item" href="/Administration/Product/Create">Продукт</a>
-                                    <a class="dropdown-item" href="/Administration/Product/Type/Create">Тип Продукт</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item active font-weight-bold">
-                            <div class="dropdown show" id="products-dropdown">
-                                <a class="nav-link active font-weight-bold dropdown-toggle"
-                                   href="#"
-                                   id="productDropDown"
-                                   data-toggle="dropdown"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Профил
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="productDropDown">
-                                    <a class="dropdown-item" href="/Order/Cart">Количка</a>
-                                    <a class="dropdown-item" href="/Receipt/Profile">Моите поръчки</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/Identity/Account/Logout">Изход</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                }
-                else if (this.User.Identity.IsAuthenticated && this.User.IsInRole("User"))
-                {
-                    <ul class="navbar-nav ml-auto my-2 my-lg-0 font-weight-bold">
-                        <li class="nav-item active font-weight-bold">
-                            <div class="dropdown show" id="products-dropdown">
-                                <a class="nav-link active font-weight-bold dropdown-toggle"
-                                   href="#"
-                                   id="productDropDown"
-                                   data-toggle="dropdown"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Профил
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="productDropDown">
-                                    <a class="dropdown-item" href="/Order/Cart">Количка</a>
-                                    <a class="dropdown-item" href="/Receipt/Profile">Моите поръчки</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/Identity/Account/Logout">Изход</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                }
-                else
-                {
-                    <ul class="navbar-nav ml-auto my-2 my-lg-0 font-weight-bold">
-                        <li class="nav-item active font-weight-bold">
-                            <a class="nav-link" href="/Identity/Account/Login">Вход</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto font-weight-bold">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Начало <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/Identity/Account/Register">Регистрация</a>
+                            <a class="nav-link" href="/News/All">Новини</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Клубът</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Галерия</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Product/All">Магазин</a>
                         </li>
                     </ul>
-                }
-            </div>
-        </nav>
-    </header>
+                    @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+                    {
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0 font-weight-bold">
+                            <li class="nav-item active font-weight-bold">
+                                <div class="dropdown show" id="products-dropdown">
+                                    <a class="nav-link active font-weight-bold dropdown-toggle"
+                                       href="#"
+                                       id="productDropDown"
+                                       data-toggle="dropdown"
+                                       aria-haspopup="true"
+                                       aria-expanded="false">
+                                        Създаване на продукти
+                                    </a>
 
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @this.RenderBody()
-        </main>
-    </div>
-
-    <footer class="navbar-dark bg-primary pt-4">
-        <div class="container-fluid text-center text-md-left">
-            <div class="row text-white">
-                <div class="col-md-4 mt-md-0 mt-3">
-                    <h5 class="text-uppercase text-warning text-left"><a class="text-uppercase text-warning text-left" href="#">За нас</a></h5>
-                </div>
-                <div class="col-md-4 mb-md-0 mb-3" style="display: inline-block">
-                    <h5 class="text-uppercase text-warning text-left">Последвайте ни</h5>
-                    <div class="float-left">
-                        <ul class="list-group float-left" style="list-style-type: none;">
-                            <li>
-                                <a class="text-white" href=""><i class="fab fa-twitter"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="productDropDown">
+                                        <a class="dropdown-item" href="/Order/Cart">Cart</a>
+                                        <a class="dropdown-item" href="/Receipt/Profile">Receipts</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/Identity/Account/Logout">Logout</a>
+                                    </div>
+                                </div>
                             </li>
-                            <li>
-                                <a class="text-white" href=""><i class="fab fa-youtube"></i></a>
+                            <li class="nav-item active font-weight-bold">
+                                <div class="dropdown show" id="products-dropdown">
+                                    <a class="nav-link active font-weight-bold dropdown-toggle"
+                                       href="#"
+                                       id="productDropDown"
+                                       data-toggle="dropdown"
+                                       aria-haspopup="true"
+                                       aria-expanded="false">
+                                        Създай
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="productDropDown">
+                                        <a class="dropdown-item" href="/Administration/News/Create">Новини</a>
+                                        <a class="dropdown-item" href="/Administration/News/Category/Create">Категория новини</a>
+                                        <a class="dropdown-item" href="/Administration/Product/Create">Продукт</a>
+                                        <a class="dropdown-item" href="/Administration/Product/Type/Create">Тип Продукт</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item active font-weight-bold">
+                                <div class="dropdown show" id="products-dropdown">
+                                    <a class="nav-link active font-weight-bold dropdown-toggle"
+                                       href="#"
+                                       id="productDropDown"
+                                       data-toggle="dropdown"
+                                       aria-haspopup="true"
+                                       aria-expanded="false">
+                                        Профил
+                                    </a>
+
+                                    <div class="dropdown-menu " aria-labelledby="productDropDown">
+                                        <a class="dropdown-item" href="/Order/Cart">Количка</a>
+                                        <a class="dropdown-item" href="/Receipt/Profile">Моите поръчки</a>
+                                        <a class="dropdown-item" href="/Administration/Receipt/All">Всички поръчки</a>
+
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/Identity/Account/Logout">Изход</a>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
-                    </div>
-                    <div class="float-none ">
-                        <ul class="list-group float-left" style="list-style-type: none;">
-                            <li>
-                                <a class="text-white" href=""><i class="fab fa-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a class="text-white"
-                                   href="https://www.facebook.com/%D0%A4%D0%9A-%D0%A1%D1%82%D1%80%D1%83%D0%BC%D1%81%D0%BA%D0%B0-%D1%81%D0%BB%D0%B0%D0%B2%D0%B0-%D0%A0%D0%B0%D0%B4%D0%BE%D0%BC%D0%B8%D1%80-460655680671521/?__tn__=%2Cd%2CP-R&eid=ARBV_iktdgKI7J68CiNPm01lzhUm9sy0P-da03i8wqhiZjffvfKIbew8s6jWgxK8aPYbRD3ZXChfFaEO">
-                                    <i class="fab fa-facebook-square"></i>
-                                </a>
+                    }
+                    else if (this.User.Identity.IsAuthenticated && this.User.IsInRole("User"))
+                    {
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0 font-weight-bold">
+                            <li class="nav-item active font-weight-bold">
+                                <div class="dropdown show" id="products-dropdown">
+                                    <a class="nav-link active font-weight-bold dropdown-toggle"
+                                       href="#"
+                                       id="productDropDown"
+                                       data-toggle="dropdown"
+                                       aria-haspopup="true"
+                                       aria-expanded="false">
+                                        Профил
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="productDropDown">
+                                        <a class="dropdown-item" href="/Order/Cart">Количка</a>
+                                        <a class="dropdown-item" href="/Receipt/Profile">Моите поръчки</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/Identity/Account/Logout">Изход</a>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
-                    </div>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0 font-weight-bold">
+                            <li class="nav-item active font-weight-bold">
+                                <a class="nav-link" href="/Identity/Account/Login">Вход</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/Identity/Account/Register">Регистрация</a>
+                            </li>
+                        </ul>
+                    }
                 </div>
-                <div class="col-md-4 mb-md-0 mb-3 ">
-                    <h5 class="text-uppercase text-warning text-left">Контакти</h5>
-                    <ul class="list-group text-left" style="list-style-type: none;">
-                        <li>
-                            <a class="text-white" asp-area="" asp-controller="Home" asp-action="Contact">Email: StrumskaSlava@gmail.com</a>
-                        </li>
-                        <li>
-                            <a class="text-white" asp-area="" asp-controller="Home" asp-action="Delivery">Тел: +359888888888</a>
-                        </li>
-                        <li>
-                            <a class="text-white" asp-area="" asp-controller="Home" asp-action="Delivery">Адрес: 2400 Радомир Стадион "Градски"</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <partial name="_CookieConsentPartial" />
+            <main role="main" class="pb-3">
+                @this.RenderBody()
+            </main>
         </div>
-        <hr class="my-1" style="background:white" />
-        <div class="footer-copyright text-center py-2" style="background:white">&copy; Всички права запазени.</div>
-    </footer>
+
+        <footer class="navbar-dark bg-primary pt-4">
+            <div class="container-fluid text-center text-md-left">
+                <div class="row text-white">
+                    <div class="col-md-4 mt-md-0 mt-3">
+                        <h5 class="text-uppercase text-warning text-left"><a class="text-uppercase text-warning text-left" href="#">За нас</a></h5>
+                    </div>
+                    <div class="col-md-4 mb-md-0 mb-3" style="display: inline-block">
+                        <h5 class="text-uppercase text-warning text-left">Последвайте ни</h5>
+                        <div class="float-left">
+                            <ul class="list-group float-left" style="list-style-type: none;">
+                                <li>
+                                    <a class="text-white" href=""><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a class="text-white" href=""><i class="fab fa-youtube"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="float-none ">
+                            <ul class="list-group float-left" style="list-style-type: none;">
+                                <li>
+                                    <a class="text-white" href=""><i class="fab fa-instagram"></i></a>
+                                </li>
+                                <li>
+                                    <a class="text-white"
+                                       href="https://www.facebook.com/%D0%A4%D0%9A-%D0%A1%D1%82%D1%80%D1%83%D0%BC%D1%81%D0%BA%D0%B0-%D1%81%D0%BB%D0%B0%D0%B2%D0%B0-%D0%A0%D0%B0%D0%B4%D0%BE%D0%BC%D0%B8%D1%80-460655680671521/?__tn__=%2Cd%2CP-R&eid=ARBV_iktdgKI7J68CiNPm01lzhUm9sy0P-da03i8wqhiZjffvfKIbew8s6jWgxK8aPYbRD3ZXChfFaEO">
+                                        <i class="fab fa-facebook-square"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-md-0 mb-3 ">
+                        <h5 class="text-uppercase text-warning text-left">Контакти</h5>
+                        <ul class="list-group text-left" style="list-style-type: none;">
+                            <li>
+                                <a class="text-white" asp-area="" asp-controller="Home" asp-action="Contact">Email: StrumskaSlava@gmail.com</a>
+                            </li>
+                            <li>
+                                <a class="text-white" asp-area="" asp-controller="Home" asp-action="Delivery">Тел: +359888888888</a>
+                            </li>
+                            <li>
+                                <a class="text-white" asp-area="" asp-controller="Home" asp-action="Delivery">Адрес: 2400 Радомир Стадион "Градски"</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-1" style="background:white" />
+            <div class="footer-copyright text-center py-2" style="background:white">&copy; Всички права запазени.</div>
+        </footer>
+    </div>
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
