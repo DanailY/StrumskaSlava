@@ -1,0 +1,32 @@
+﻿@model IEnumerable<StrumskaSlava.Web.ViewModels.Receipt.Profile.ReceiptProfileViewModel>
+
+@{
+    ViewData["Title"] = "Моите Поръчки";
+}
+
+<h1 class="text-center">Моите Поръчки</h1>
+<table class="table table-hover">
+    <thead>
+        <tr class="row text-center font-weight-bold">
+            <th class="col-md-4 h5">Номер поръчка</th>
+            <th class="col-md-2 h5">Регистрирана на</th>
+            <th class="col-md-2 h5">Общо</th>
+            <th class="col-md-1 h5">Продукти</th>
+            <th class="col-md-3 h5">Детайли на поръчката</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var receipt in Model)
+        {
+            <tr class="row text-center font-weight-bold">
+                <td class="col-md-4 h6">@receipt.Id</td>
+                <td class="col-md-2 h6">@receipt.CreatedOn.ToString("dd/MM/yyyy")</td>
+                <td class="col-md-2 h6">@receipt.Total.ToString("F2") лв.</td>
+                <td class="col-md-1 h6">@receipt.Products</td>
+                <td class="col-md-3">
+                    <a href="/Receipt/Details/@receipt.Id" class="btn btn-primary font-weight-bold">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
