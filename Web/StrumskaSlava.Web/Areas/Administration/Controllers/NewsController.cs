@@ -81,7 +81,6 @@
 
             newsServiceModel.Picture = pictureUrl;
 
-
             await this.newsService.Create(newsServiceModel);
 
             return this.Redirect("/");

@@ -123,6 +123,8 @@
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IReceiptService, ReceiptService>();
+            services.AddTransient<IFootballPlayerService, FootballPlayerService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
