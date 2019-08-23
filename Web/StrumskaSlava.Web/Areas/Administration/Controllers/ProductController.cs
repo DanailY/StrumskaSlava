@@ -82,7 +82,6 @@
 
             productServiceModel.Picture = pictureUrl;
 
-
             await this.productService.Create(productServiceModel);
 
             return this.Redirect("/");

@@ -39,6 +39,48 @@
             return result > 0;
         }
 
+        public async Task<bool> Edit(string id, FootballPlayerServiceModel footballPlayerServiceModel)
+        {
+            PlayerPosition playerPositionFromDb = await this.context.PlayerPositions
+                .SingleOrDefaultAsync(playerPosition => playerPosition.Name == footballPlayerServiceModel.PlayerPosition.Name);
+
+            if (playerPositionFromDb == null)
+            {
+                throw new ArgumentNullException(nameof(playerPositionFromDb));
+            }
+
+            FootballPlayer footballPlayerFromDb = await this.context.FootballPlayers.SingleOrDefaultAsync(player => player.Id == id);
+
+            if (footballPlayerFromDb == null)
+            {
+                throw new ArgumentNullException(nameof(footballPlayerFromDb));
+            }
+
+            footballPlayerFromDb.Name = footballPlayerServiceModel.Name;
+            footballPlayerFromDb.Country = footballPlayerServiceModel.Country;
+            footballPlayerFromDb.Picture = footballPlayerServiceModel.Picture;
+            footballPlayerFromDb.Age = footballPlayerServiceModel.Age;
+            footballPlayerFromDb.Height = footballPlayerServiceModel.Height;
+            footballPlayerFromDb.PlayerNumber = footballPlayerServiceModel.PlayerNumber;
+
+            footballPlayerFromDb.PlayerPosition = playerPositionFromDb;
+
+            this.context.Update(footballPlayerFromDb);
+            int result = await this.context.SaveChangesAsync();
+
+            return result > 0;
+        }
+
+        public async Task<bool> Delete(string id)
+        {
+            FootballPlayer footballPlayer = await this.context.FootballPlayers.SingleOrDefaultAsync(player => player.Id == id);
+
+            this.context.Remove(footballPlayer);
+            int result = await this.context.SaveChangesAsync();
+
+            return result > 0;
+        }
+
         public IQueryable<PlayerPositionServiceModel> GetAllPlayerPosition()
         {
             return this.context.PlayerPositions.To<PlayerPositionServiceModel>();
@@ -51,7 +93,9 @@
 
         public async Task<FootballPlayerServiceModel> GetById(string id)
         {
-            return await this.context.FootballPlayers.To<FootballPlayerServiceModel>().SingleOrDefaultAsync(player => player.Id == id);
+            var somthing = await this.context.FootballPlayers.To<FootballPlayerServiceModel>().SingleOrDefaultAsync(player => player.Id == id);
+
+            return somthing;
         }
     }
 }

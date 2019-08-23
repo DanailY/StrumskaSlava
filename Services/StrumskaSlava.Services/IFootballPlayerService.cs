@@ -14,6 +14,10 @@
 
         Task<FootballPlayerServiceModel> GetById(string id);
 
+        Task<bool> Edit(string id, FootballPlayerServiceModel footballPlayerServiceModel);
+
+        Task<bool> Delete(string id);
+
         IQueryable<PlayerPositionServiceModel> GetAllPlayerPosition();
 
         IQueryable<FootballPlayerServiceModel> GetAllPlayers();

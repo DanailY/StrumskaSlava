@@ -1,0 +1,97 @@
+﻿@using StrumskaSlava.Web.ViewModels.FootballPlayer.Delete
+@model StrumskaSlava.Web.ViewModels.FootballPlayer.Delete.FootballPlayerDeleteViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="text-dark font-weight-bold text-center p-3 w-60 mx-auto rounded mt-3">Изтрий Футболист</h1>
+
+<form class="form border-primary-5 rounded p-3 w-60 mx-auto mt-auto" asp-action="/Administration/Player/Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <hr class="w-95" />
+    <div id="title-and-content-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Name" class="text-primary">Име</label>
+            </div>
+            <input asp-for="Name" type="text" id="name" class="form-control" placeholder="Име" required autofocus disabled>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Picture" class="text-primary">Снимка</label>
+            </div>
+            <input type="file"
+                   class="form-control-file text-primary text-center"
+                   id="picture"
+                   placeholder="Снимка..."
+                   asp-for="Picture"
+                   disabled>
+        </div>
+    </div>
+    <div id="name-and-price-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Country" class="text-primary">Държава</label>
+            </div>
+            <input asp-for="Country" type="text" id="country" class="form-control" placeholder="Държава" required autofocus disabled>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Age" class="text-primary">Години</label>
+            </div>
+            <input type="number"
+                   class="form-control text-primary text-center"
+                   id="age"
+                   placeholder="Години"
+                   disabled
+                   asp-for="Age">
+        </div>
+    </div>
+
+    <div id="name-and-price-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Height" class="text-primary">Височина</label>
+            </div>
+            <input asp-for="Height"
+                   type="number"
+                   id="height"
+                   class="form-control"
+                   placeholder="Височина"
+                   disabled>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="PlayerNumber" class="text-primary">Номер</label>
+            </div>
+            <input type="number"
+                   class="form-control text-primary text-center"
+                   id="playerNumber"
+                   placeholder="Номер"
+                   disabled
+                   asp-for="PlayerNumber">
+        </div>
+    </div>
+
+    <div class="form-group mx-auto w-45">
+        <hr class="w-95" />
+        <div class="d-flex justify-content-center">
+            <label asp-for="PlayerPositionName" class="text-primary">Позиция</label>
+        </div>
+        <select class="form-control text-primary" id="position" asp-for="PlayerPositionName" disabled>
+            @foreach (var position in ((IEnumerable<FootballPlayerDeletePlayerPositionViewModel>)this.ViewData["positions"]))
+            {
+                @if (position.Name == Model.PlayerPositionName)
+                {
+                    <option value="@position.Name" selected>@position.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-lg btn-primary btn-block mt-3 w-45" type="submit">Изтрий</button>
+    </div>
+</form>

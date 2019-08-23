@@ -6,10 +6,11 @@
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
-    using StrumskaSlava.Services;
-    using StrumskaSlava.Web.ViewModels.FootballPlayer.All;
-    using StrumskaSlava.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
+
+    using StrumskaSlava.Services;
+    using StrumskaSlava.Services.Mapping;
+    using StrumskaSlava.Web.ViewModels.FootballPlayer.All;
     using StrumskaSlava.Web.ViewModels.FootballPlayer.Details;
 
     public class PlayerController : BaseController
