@@ -5,7 +5,6 @@
     using System.Text;
 
     using StrumskaSlava.Data.Common.Models;
-    using StrumskaSlava.Data.Models.Enums;
 
     public class Product : BaseModel<string>
     {

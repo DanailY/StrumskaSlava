@@ -6,11 +6,10 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using StrumskaSlava.Data.Common.Models;
-    using StrumskaSlava.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using StrumskaSlava.Data.Common.Models;
+    using StrumskaSlava.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -48,6 +47,7 @@
 
         public DbSet<PlayerPosition> PlayerPositions { get; set; }
 
+        public DbSet<Picture> Pictures { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

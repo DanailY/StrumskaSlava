@@ -1,12 +1,18 @@
 ﻿namespace StrumskaSlava.Data.Models
 {
+    using System.Collections.Generic;
+
     using StrumskaSlava.Data.Common.Models;
-    using StrumskaSlava.Data.Models.Enums;
 
     public class Gallery : BaseModel<string>
     {
+        public Gallery()
+        {
+            this.Pictures = new List<Picture>();
+        }
+
         public string Name { get; set; }
 
-        public GalleryType Type { get; set; }
+        public List<Picture> Pictures { get; set; }
     }
 }
