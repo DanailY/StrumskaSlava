@@ -44,6 +44,11 @@
 
         public DbSet<Receipt> Receipts { get; set; }
 
+        public DbSet<FootballPlayer> FootballPlayers { get; set; }
+
+        public DbSet<PlayerPosition> PlayerPositions { get; set; }
+
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
