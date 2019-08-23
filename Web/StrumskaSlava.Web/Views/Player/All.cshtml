@@ -1,0 +1,96 @@
+﻿@model IEnumerable<StrumskaSlava.Web.ViewModels.FootballPlayer.All.FootballPlayerAllViewModel>
+
+@{
+    ViewData["Title"] = "Отборът";
+}
+
+    <div class="row mt-3">
+        <div class="col-md-12 mb-3">
+            <div class="section-title">
+                <h2>Отборът</h2>
+            </div>
+            <hr  />
+        </div>
+        @foreach (var player in Model.Where(position => position.PlayerPositionName == "Вратар"))
+        {
+            <div class="row mt-3">
+                <div class="col-md-12 mb-3">
+                    <div class="section-title">
+                        <h4>Вратари</h4>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="post">
+                        <a class="post-img img-thumbnail" href="/Player/Details/@player.Id"><img src="@player.Picture" alt=""></a>
+                        <div class="post-body">
+                            <h5 class="post-title"><a href="/Player/Details/@player.Id">@player.Name</a></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <hr class="w-95" />
+        @foreach (var player in Model.Where(position => position.PlayerPositionName == "Защитник"))
+        {
+            <div class="row mt-3">
+                <div class="col-md-12 mb-3">
+                    <div class="section-title">
+                        <h4>Защитници</h4>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="post">
+                        <a class="post-img img-thumbnail" href="/Player/Details/@player.Id"><img src="@player.Picture" alt=""></a>
+                        <div class="post-body">
+                            <h5 class="post-title"><a href="/Player/Details/@player.Id">@player.Name</a></h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+        }
+        <hr class="w-95" />
+        @foreach (var player in Model.Where(position => position.PlayerPositionName == "Полузащитник"))
+        {
+            <div class="row mt-3">
+                <div class="col-md-12 mb-3">
+                    <div class="section-title">
+                        <h4>Полузащитници</h4>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="post">
+                        <a class="post-img img-thumbnail" href="/Player/Details/@player.Id"><img src="@player.Picture" alt=""></a>
+                        <div class="post-body">
+                            <h5 class="post-title"><a href="/Player/Details/@player.Id">@player.Name</a></h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+        }
+        <hr class="w-95" />
+        @foreach (var player in Model.Where(position => position.PlayerPositionName == "Нападател"))
+        {
+            <div class="row mt-3">
+                <div class="col-md-12 mb-3">
+                    <div class="section-title">
+                        <h4>Нападатели</h4>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="post">
+                        <a class="post-img img-thumbnail" href="/Player/Details/@player.Id"><img src="@player.Picture" alt=""></a>
+                        <div class="post-body">
+                            <h5 class="post-title"><a href="/Player/Details/@player.Id">@player.Name</a></h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+        }
+        <hr class="w-95" />
+    </div>

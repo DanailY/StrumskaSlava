@@ -13,5 +13,7 @@
         Task<bool> CreatePlayer(FootballPlayerServiceModel footballPlayerServiceModel);
 
         IQueryable<PlayerPositionServiceModel> GetAllPlayerPosition();
+
+        IQueryable<FootballPlayerServiceModel> GetAllPlayers();
     }
 }

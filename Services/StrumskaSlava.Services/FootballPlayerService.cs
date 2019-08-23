@@ -43,5 +43,10 @@
         {
             return this.context.PlayerPositions.To<PlayerPositionServiceModel>();
         }
+
+        public IQueryable<FootballPlayerServiceModel> GetAllPlayers()
+        {
+            return this.context.FootballPlayers.To<FootballPlayerServiceModel>();
+        }
     }
 }

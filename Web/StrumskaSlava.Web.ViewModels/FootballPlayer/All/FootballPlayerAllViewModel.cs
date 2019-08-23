@@ -1,13 +1,13 @@
-﻿namespace StrumskaSlava.Services.Data
+﻿namespace StrumskaSlava.Web.ViewModels.FootballPlayer.All
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
 
-    using StrumskaSlava.Data.Models;
+    using StrumskaSlava.Services.Data;
     using StrumskaSlava.Services.Mapping;
 
-    public class FootballPlayerServiceModel : IMapFrom<FootballPlayer>, IMapTo<FootballPlayer>
+    public class FootballPlayerAllViewModel : IMapFrom<FootballPlayerServiceModel>
     {
         public string Id { get; set; }
 
@@ -17,9 +17,7 @@
 
         public double Height { get; set; }
 
-        public int PlayerPositionId { get; set; }
-
-        public PlayerPositionServiceModel PlayerPosition { get; set; }
+        public string PlayerPositionName { get; set; }
 
         public string Picture { get; set; }
 
