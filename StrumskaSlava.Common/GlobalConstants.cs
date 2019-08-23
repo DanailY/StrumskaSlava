@@ -24,5 +24,14 @@
 
         public const int DefaultPageNumber = 1;
 
+        public const string PlayerPositionGoalkeeper = "Вратар";
+
+        public const string PlayerPositionDefender = "Защитник";
+
+        public const string PlayerPositionMidfielder = "Полузащитник";
+
+        public const string PlayerPositionForward = "Нападател";
+
+
     }
 }

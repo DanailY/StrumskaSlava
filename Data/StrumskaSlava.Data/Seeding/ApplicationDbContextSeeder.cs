@@ -27,7 +27,8 @@
                           {
                               new RolesSeeder(),
                               new SettingsSeeder(),
-                              new OrderStatusSeeder(), 
+                              new OrderStatusSeeder(),
+                              new PlayerPositionSeeder(),
                           };
 
             foreach (var seeder in seeders)

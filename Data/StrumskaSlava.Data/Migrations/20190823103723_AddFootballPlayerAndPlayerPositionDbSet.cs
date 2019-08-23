@@ -1,9 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace StrumskaSlava.Data.Migrations
+﻿namespace StrumskaSlava.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddFootballPlayerAndPlayerPositionDbSet : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
