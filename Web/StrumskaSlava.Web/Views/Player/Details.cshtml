@@ -1,0 +1,33 @@
+﻿@model StrumskaSlava.Web.ViewModels.FootballPlayer.Details.PlayerDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="d-flex justify-content-between row mt-3">
+    <div class="col-md-5">
+        <img src="@Model.Picture" class="img-thumbnail" />
+    </div>
+    <div class="album-tracks col-md-6">
+        <h3 class="text-left">Име: @Model.Name</h3>
+        <hr />
+        <h3 class="text-left">Пост: @Model.PlayerPositionName</h3>
+        <hr />
+        <h3 class="text-left">Държава: @Model.Country</h3>
+        <hr />
+        <h3 class="text-left">Възраст: @Model.Age</h3>
+        <hr />
+        <h3 class="text-left">Височина: @Model.Height см</h3>
+        <hr />
+        <h3 class="text-left">Номер: @Model.PlayerNumber</h3>
+        <hr />
+        <div class="d-flex justify-content-start">
+            @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+            {
+                <a class="btn bg-primary text-white mr-1" href="/Administration/Player/Edit/@Model.Id">Редактирай</a>
+                <a class="btn bg-danger text-white mr-1" href="/Administration/Player/Delete/@Model.Id">Изтрий</a>
+            }
+        </div>
+    </div>
+</div>
+<hr />

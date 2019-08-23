@@ -10,6 +10,7 @@
     using StrumskaSlava.Web.ViewModels.FootballPlayer.All;
     using StrumskaSlava.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
+    using StrumskaSlava.Web.ViewModels.FootballPlayer.Details;
 
     public class PlayerController : BaseController
     {
@@ -29,6 +30,20 @@
                 .ToListAsync();
 
             return this.View(allPlayers);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            PlayerDetailsViewModel playerDetailsViewModel = (await this.footballPlayerService.GetById(id)).To<PlayerDetailsViewModel>();
+
+            if (playerDetailsViewModel == null)
+            {
+                //TODO: Error Handling
+                return this.Redirect("/");
+            }
+
+            return this.View(playerDetailsViewModel);
         }
     }
 }

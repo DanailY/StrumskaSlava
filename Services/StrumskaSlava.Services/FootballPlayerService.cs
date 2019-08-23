@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-
+    using Microsoft.EntityFrameworkCore;
     using StrumskaSlava.Data;
     using StrumskaSlava.Data.Models;
     using StrumskaSlava.Services.Data;
@@ -47,6 +47,11 @@
         public IQueryable<FootballPlayerServiceModel> GetAllPlayers()
         {
             return this.context.FootballPlayers.To<FootballPlayerServiceModel>();
+        }
+
+        public async Task<FootballPlayerServiceModel> GetById(string id)
+        {
+            return await this.context.FootballPlayers.To<FootballPlayerServiceModel>().SingleOrDefaultAsync(player => player.Id == id);
         }
     }
 }

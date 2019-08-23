@@ -12,6 +12,8 @@
     {
         Task<bool> CreatePlayer(FootballPlayerServiceModel footballPlayerServiceModel);
 
+        Task<FootballPlayerServiceModel> GetById(string id);
+
         IQueryable<PlayerPositionServiceModel> GetAllPlayerPosition();
 
         IQueryable<FootballPlayerServiceModel> GetAllPlayers();
