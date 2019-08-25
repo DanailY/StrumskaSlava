@@ -1,0 +1,25 @@
+﻿@model IEnumerable<StrumskaSlava.Web.ViewModels.Gallery.All.GalleryAllViewModel>
+
+@{
+    ViewData["Title"] = "Галерия";
+}
+
+<div class="row mt-3">
+    <div class="col-md-12 mb-3">
+        <div class="section-title">
+            <h2>Галерия</h2>
+        </div>
+    </div>
+    @foreach (var gallery in Model)
+    {
+        <div class="col-md-2">
+            <div class="post">
+                <a class="post-img img-thumbnail" href="/Gallery/Details/@gallery.Id"><img src="@gallery.PicturesUrl[0]" alt=""></a>
+                <div class="post-body">
+                    <h5 class="post-title"><a href="/Gallery/Details/@gallery.Id">@gallery.Name</a></h5>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

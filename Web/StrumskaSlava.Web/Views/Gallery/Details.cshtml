@@ -1,0 +1,27 @@
+﻿@using StrumskaSlava.Common
+@model StrumskaSlava.Web.ViewModels.Gallery.Details.GalleryDetailsViewModel
+
+@{
+    ViewData["Title"] = $"{Model.Name}";
+}
+
+<div class="row mt-3">
+    <div class="col-md-12 mb-3">
+        <div class="section-title">
+            <h2>@Model.Name</h2>
+            @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+            {
+                <a class="btn bg-danger text-white mr-1" href="/Administration/Gallery/Delete/@Model.Id">Изтрий</a>
+            }
+        </div>
+    </div>
+    @foreach (var picture in Model.PicturesUrl)
+    {
+        <div class="col-md-3">
+            <div class="post">
+                <a class="post-img img-thumbnail" href="@picture"><img src="@picture" alt=""></a>
+
+            </div>
+        </div>
+    }
+</div>

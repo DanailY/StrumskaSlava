@@ -64,7 +64,7 @@
                             </div>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Галерия</a>
+                            <a class="nav-link" href="/Gallery/All">Галерия</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/Product/All">Магазин</a>
@@ -90,6 +90,7 @@
                                         <a class="dropdown-item" href="/Administration/Product/Create">Продукт</a>
                                         <a class="dropdown-item" href="/Administration/Product/Type/Create">Тип Продукт</a>
                                         <a class="dropdown-item" href="/Administration/Player/Create">Футболист</a>
+                                        <a class="dropdown-item" href="/Administration/Gallery/Create">Галерия</a>
                                     </div>
                                 </div>
                             </li>
@@ -221,6 +222,7 @@
         <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/script.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
@@ -228,6 +230,7 @@
         <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/script.js"></script>
     </environment>
 
     @this.RenderSection("Scripts", required: false)

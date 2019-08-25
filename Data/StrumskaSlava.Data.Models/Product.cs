@@ -12,7 +12,7 @@
 
         public string ProductTypeId { get; set; }
 
-        public ProductType ProductType { get; set; }
+        public virtual ProductType ProductType { get; set; }
 
         public string Picture { get; set; }
 

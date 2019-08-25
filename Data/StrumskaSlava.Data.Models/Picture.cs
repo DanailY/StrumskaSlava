@@ -9,5 +9,9 @@
     public class Picture : BaseModel<string>
     {
         public string Url { get; set; }
+
+        public string GalleryId { get; set; }
+
+        public virtual Gallery Gallery { get; set; }
     }
 }

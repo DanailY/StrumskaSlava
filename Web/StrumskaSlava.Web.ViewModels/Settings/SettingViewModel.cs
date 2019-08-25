@@ -1,9 +1,8 @@
 ﻿namespace StrumskaSlava.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using StrumskaSlava.Data.Models;
     using StrumskaSlava.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

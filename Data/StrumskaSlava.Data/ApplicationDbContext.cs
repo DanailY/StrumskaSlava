@@ -95,6 +95,16 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<Gallery>()
+                .HasMany(x => x.Pictures)
+                .WithOne(x => x.Gallery)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
         }
 
         private static void ConfigureUserIdentityRelations(ModelBuilder builder)

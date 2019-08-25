@@ -14,7 +14,7 @@
 
         public string Picture { get; set; }
 
-        public NewsCategory NewsCategory { get; set; }
+        public virtual NewsCategory NewsCategory { get; set; }
 
         public string NewsCategoryId { get; set; }
 

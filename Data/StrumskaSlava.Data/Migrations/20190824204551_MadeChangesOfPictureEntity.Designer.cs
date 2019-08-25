@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StrumskaSlava.Data;
 
 namespace StrumskaSlava.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190824204551_MadeChangesOfPictureEntity")]
+    partial class MadeChangesOfPictureEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -567,8 +569,7 @@ namespace StrumskaSlava.Data.Migrations
                 {
                     b.HasOne("StrumskaSlava.Data.Models.Gallery", "Gallery")
                         .WithMany("Pictures")
-                        .HasForeignKey("GalleryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GalleryId");
                 });
 
             modelBuilder.Entity("StrumskaSlava.Data.Models.Product", b =>

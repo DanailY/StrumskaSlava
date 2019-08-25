@@ -11,10 +11,10 @@
             this.Orders = new List<Order>();
         }
 
-        public List<Order> Orders { get; set; }
+        public virtual List<Order> Orders { get; set; }
 
         public string RecipientId { get; set; }
 
-        public ApplicationUser Recipient { get; set; }
+        public virtual ApplicationUser Recipient { get; set; }
     }
 }

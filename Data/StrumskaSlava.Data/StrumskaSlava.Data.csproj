@@ -17,6 +17,8 @@
     <Compile Remove="Migrations\20190816111303_AddedUserRoleEnum.Designer.cs" />
     <Compile Remove="Migrations\20190821071720_AddedProductTypeModel.cs" />
     <Compile Remove="Migrations\20190821071720_AddedProductTypeModel.Designer.cs" />
+    <Compile Remove="Migrations\20190824195552_AddGalleryRelationships.cs" />
+    <Compile Remove="Migrations\20190824195552_AddGalleryRelationships.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +35,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">
       <PrivateAssets>all</PrivateAssets>

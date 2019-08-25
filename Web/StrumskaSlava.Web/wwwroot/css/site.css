@@ -319,3 +319,31 @@ hr.hr-2 {
         display: none;
     }
 }
+
+.image {
+    width: 150px;
+    height: 150px;
+    z-index: 100;
+    background-image: url("../Images/upload-button.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+}
+
+.image-preset {
+    width: 150px;
+    height: 150px;
+    z-index: 100;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+}
+
+
+.image-upload {
+    z-index: 99;
+    opacity: 0;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+}

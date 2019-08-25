@@ -16,7 +16,7 @@
 
         public int PlayerPositionId { get; set; }
 
-        public PlayerPosition PlayerPosition { get; set; }
+        public virtual PlayerPosition PlayerPosition { get; set; }
 
         public string Picture { get; set; }
 

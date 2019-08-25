@@ -13,6 +13,6 @@
 
         public string Name { get; set; }
 
-        public List<Picture> Pictures { get; set; }
+        public virtual List<Picture> Pictures { get; set; }
     }
 }
