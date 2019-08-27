@@ -1,18 +1,14 @@
-﻿namespace StrumskaSlava.Data.Models
+﻿namespace StrumskaSlava.Web.ViewModels.MatchSchedule.Delete
 {
     using System;
+    using System.Collections.Generic;
+    using System.Text;
 
-    using StrumskaSlava.Data.Common.Models;
-
-    public class MatchSchedule : BaseModel<string>
+    public class MatchScheduleDeleteViewModel
     {
         public string HomeTeam { get; set; }
 
         public string GuestTeam { get; set; }
-
-        public string MatchStatusId { get; set; }
-
-        public virtual MatchStatus MatchStatus { get; set; }
 
         public DateTime MatchDate { get; set; }
 

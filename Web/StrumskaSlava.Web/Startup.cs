@@ -125,6 +125,8 @@
             services.AddTransient<IReceiptService, ReceiptService>();
             services.AddTransient<IFootballPlayerService, FootballPlayerService>();
             services.AddTransient<IGalleryService, GalleryService>();
+            services.AddTransient<IMatchScheduleService, MatchScheduleService>();
+
 
         }
 

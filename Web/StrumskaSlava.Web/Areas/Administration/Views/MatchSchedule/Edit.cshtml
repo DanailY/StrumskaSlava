@@ -1,0 +1,74 @@
+﻿@model StrumskaSlava.Web.BindingModels.MatchSchedule.Edit.MatchScheduleEditBindingModel
+
+@{
+    ViewData["Title"] = "Редактиране на графика";
+}
+
+<h1 class="text-dark font-weight-bold text-center p-3 w-60 mx-auto rounded mt-3">Редактиране на График за провеждане на футболните срещи.</h1>
+
+<form class="form border-primary-5 rounded p-3 w-60 mx-auto mt-auto" method="post" asp-action="/Administration/MatchSchedule/Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <hr class="w-95" />
+    <div id="title-and-content-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="HomeTeam" class="text-primary">Домакин</label>
+            </div>
+            <input asp-for="HomeTeam" type="text" id="homeTeam" class="form-control" placeholder="Домакин" required autofocus>
+            <span asp-validation-for="HomeTeam" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="GuestTeam" class="text-primary">Гост</label>
+            </div>
+            <input asp-for="GuestTeam" type="text" id="guestTeam" class="form-control" placeholder="Гост" required autofocus>
+            <span asp-validation-for="GuestTeam" class="text-danger"></span>
+        </div>
+    </div>
+    <div id="title-and-content-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="HomeTeamScore" class="text-primary">Отбелязани голове - Домакин</label>
+            </div>
+            <input asp-for="HomeTeamScore" type="number" step="1" min="0" id="homeTeamScore" class="form-control" placeholder="Отбелязани голове - Домакин" required autofocus>
+            <span asp-validation-for="HomeTeamScore" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="GuestTeamScore" class="text-primary">Отбелязани голове - Гост</label>
+            </div>
+            <input asp-for="GuestTeamScore" type="number" step="1" min="0" id="guestTeam" class="form-control" placeholder="Отбелязани голове - Гост" required autofocus>
+            <span asp-validation-for="GuestTeamScore" class="text-danger"></span>
+        </div>
+    </div>
+    <div id="date-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="MatchDate" class="text-primary">Дата</label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   id="matchDate"
+                   placeholder="Дата"
+                   asp-for="MatchDate">
+            <span asp-validation-for="MatchDate" class="text-danger"></span>
+        </div>
+    </div>
+    <hr class="w-95" />
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-lg btn-primary btn-block mt-3 w-45" type="submit">Редактирай</button>
+    </div>
+</form>
+
+<script>
+    window.onload = () => {
+        $('#matchDate').datetimepicker({
+            format: 'd.m.Y H:i',
+            lang: 'en'
+        });
+    };
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

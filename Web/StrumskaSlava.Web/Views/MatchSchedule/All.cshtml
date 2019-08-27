@@ -1,0 +1,48 @@
+﻿@model IEnumerable<StrumskaSlava.Web.ViewModels.MatchSchedule.All.MatchScheduleAllViewModel>
+
+@{
+    ViewData["Title"] = "Програма";
+}
+
+
+<div class="d-flex justify-content-center row mt-3">
+    <div div class="col-md-12">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Домакин</th>
+                    <th scope="col">Резултат</th>
+                    <th scope="col">Гост</th>
+                    @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+                    {
+                        <th scope="col">Действие</th>
+                    }
+                </tr>
+            </thead>
+            @foreach (var game in Model)
+            {
+                <tbody>
+                    <tr>
+                        <th scope="row">@game.MatchDate.ToString("HH:MM dd/MM/yyyy")</th>
+                        <td>@game.HomeTeam</td>
+                        <td>@game.HomeTeamScore - @game.GuestTeamScore</td>
+                        <td>@game.GuestTeam</td>
+                        <td>
+                            @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+                            {
+                            <div class="d-flex justify-content-center">
+                                <a class="btn btn-sm bg-primary text-white mr-1" href="/Administration/MatchSchedule/Edit/@game.Id">Редактирай</a>
+                                <a class="btn btn-sm bg-danger text-white mr-1" href="/Administration/MatchSchedule/Delete/@game.Id">Изтрий</a>
+                            </div>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+
+
+    </div>
+</div>
+<hr />

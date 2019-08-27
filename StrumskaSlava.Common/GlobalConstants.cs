@@ -32,6 +32,8 @@
 
         public const string PlayerPositionForward = "Нападател";
 
+        public const string MatchStatusActive = "Active";
 
+        public const string MatchStatusCompleted = "Completed";
     }
 }

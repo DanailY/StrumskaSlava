@@ -29,6 +29,7 @@
                               new SettingsSeeder(),
                               new OrderStatusSeeder(),
                               new PlayerPositionSeeder(),
+                              new MatchStatusSeeder(),
                           };
 
             foreach (var seeder in seeders)

@@ -37,6 +37,8 @@
 
         public DbSet<MatchSchedule> MatchSchedules { get; set; }
 
+        public DbSet<MatchStatus> MatchStatuses { get; set; }
+
         public DbSet<ProductType> ProductTypes { get; set; }
 
         public DbSet<OrderStatus> OrderStatuses { get; set; }
