@@ -9,7 +9,7 @@
     using StrumskaSlava.Common;
     using StrumskaSlava.Data.Models;
 
-    public class MatchStatusSeeder : ISeeder
+    internal class MatchStatusSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {

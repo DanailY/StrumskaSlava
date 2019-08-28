@@ -51,6 +51,8 @@
 
         public DbSet<Picture> Pictures { get; set; }
 
+        public DbSet<LeagueTable> LeagueTables { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

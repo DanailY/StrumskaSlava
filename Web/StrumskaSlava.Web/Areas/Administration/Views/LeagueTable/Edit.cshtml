@@ -1,0 +1,85 @@
+﻿@model StrumskaSlava.Web.BindingModels.LeagueTable.LeagueTableEditBindingModel
+
+@{
+    ViewData["Title"] = "Редактиране";
+}
+
+<h1 class="text-dark font-weight-bold text-center p-3 w-60 mx-auto rounded mt-3">Редактиране на класирането.</h1>
+
+<form class="form border-primary-5 rounded p-3 w-60 mx-auto mt-auto" method="post" asp-action="/Administration/LeagueTable/Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <hr class="w-95" />
+    <div id="title-and-content-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="TeamName" class="text-primary">Отбор</label>
+            </div>
+            <input asp-for="TeamName" type="text" id="teamName" class="form-control" placeholder="Отбор" required autofocus>
+            <span asp-validation-for="TeamName" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="MatchesPlayed" class="text-primary">Изиграни Мачове</label>
+            </div>
+            <input asp-for="MatchesPlayed" type="number" step="1" min="0" id="matchesPlayed" class="form-control" placeholder="Изиграни Мачове" required autofocus>
+            <span asp-validation-for="MatchesPlayed" class="text-danger"></span>
+        </div>
+    </div>
+    <div id="title-and-content-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Wins" class="text-primary">Победи</label>
+            </div>
+            <input asp-for="Wins" type="number" step="1" min="0" id="homeTeamScore" class="form-control" placeholder="Победи" required autofocus>
+            <span asp-validation-for="Wins" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Draws" class="text-primary">Равенства</label>
+            </div>
+            <input asp-for="Draws" type="number" step="1" min="0" id="draws" class="form-control" placeholder="Равенства" required autofocus>
+            <span asp-validation-for="Draws" class="text-danger"></span>
+        </div>
+    </div>
+    <div id="title-and-content-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Losses" class="text-primary">Загуби</label>
+            </div>
+            <input asp-for="Losses" type="number" step="1" min="0" id="losses" class="form-control" placeholder="Загуби" required autofocus>
+            <span asp-validation-for="Losses" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="GoalsFor" class="text-primary">Отбелязани голове</label>
+            </div>
+            <input asp-for="GoalsFor" type="number" step="1" min="0" id="гoalsFor" class="form-control" placeholder="Отбелязани голове" required autofocus>
+            <span asp-validation-for="GoalsFor" class="text-danger"></span>
+        </div>
+    </div>
+    <div id="title-and-content-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="GoalsAgainst" class="text-primary">Допуснати голове</label>
+            </div>
+            <input asp-for="GoalsAgainst" type="number" step="1" min="0" id="goalsAgainst" class="form-control" placeholder="Допуснати голове" required autofocus>
+            <span asp-validation-for="GoalsAgainst" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Points" class="text-primary">Точки</label>
+            </div>
+            <input asp-for="Points" type="number" step="1" min="0" id="points" class="form-control" placeholder="Точки" required autofocus>
+            <span asp-validation-for="Points" class="text-danger"></span>
+        </div>
+    </div>
+
+    <hr class="w-95" />
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-lg btn-primary btn-block mt-3 w-45" type="submit">Редактирай</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

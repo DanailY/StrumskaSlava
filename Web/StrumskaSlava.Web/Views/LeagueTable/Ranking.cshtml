@@ -1,0 +1,61 @@
+﻿@model List<StrumskaSlava.Web.ViewModels.LeagueTable.LeagueTableViewModel>
+
+@{
+    ViewData["Title"] = "Класиране";
+}
+
+<div class="d-flex justify-content-center row mt-3">
+    <div div class="col-md-12">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Отбор</th>
+                    <th scope="col">М</th>
+                    <th scope="col">П</th>
+                    <th scope="col">Р</th>
+                    <th scope="col">З</th>
+                    <th scope="col">ВГ</th>
+                    <th scope="col">ДГ</th>
+                    <th scope="col">ГР</th>
+                    <th scope="col">Т</th>
+                    @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+                    {
+                        <th scope="col">Редактирай</th>
+                    }
+                </tr>
+            </thead>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tbody>
+                    <tr>
+                        <th scope="row">@(@i + 1)</th>
+                        <td>@Model[i].TeamName</td>
+                        <td>@Model[i].MatchesPlayed</td>
+                        <td>@Model[i].Wins</td>
+                        <td>@Model[i].Draws</td>
+                        <td>@Model[i].Losses</td>
+                        <td>@Model[i].GoalsFor</td>
+                        <td>@Model[i].GoalsAgainst</td>
+                        <td>@(@Model[i].GoalsFor - @Model[i].GoalsAgainst)</td>
+                        <td>@Model[i].Points</td>
+                        @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
+                        {
+                            <td>
+
+                                <div class="d-flex justify-content-center">
+                                    <a class="btn btn-sm bg-primary text-white mr-1" href="/Administration/LeagueTable/Edit/@Model[i].Id">Редактирай</a>
+                                </div>
+
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            }
+        </table>
+
+
+    </div>
+</div>
+<hr />
+

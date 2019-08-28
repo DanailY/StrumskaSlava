@@ -35,5 +35,42 @@
         public const string MatchStatusActive = "Active";
 
         public const string MatchStatusCompleted = "Completed";
+
+        public const int InitialLeagueTableStats = 0;
+
+        public const string LeagueTableStrumskaSlava = "Струмска слава";
+
+        public const string LeagueTableCska = "ЦСКА 1948";
+
+        public const string LeagueTableSeptemvri = "Септември София";
+
+        public const string LeagueTableLokoSofia = "Локомотив София";
+
+        public const string LeagueTableMontana = "Монтана";
+
+        public const string LeagueTableHebar = "Хебър";
+
+        public const string LeagueTableKariana = "Кариана Ерден";
+
+        public const string LeagueTableLitex = "Литекс";
+
+        public const string LeagueTableNaftata = "Нефтохимик";
+
+        public const string LeagueTableLudogorets = "Лудогорец 2";
+
+        public const string LeagueTablePirin = "Пирин Благоевград";
+
+        public const string LeagueTableBotevGalabovo = "Ботев Гълъбово";
+
+        public const string LeagueTableLokoGorna = "Локомотив Горна Оряховица";
+
+        public const string LeagueTableChernomoretsBalchik = "Черноморец Балчик";
+
+        public const string LeagueTablePomorie = "Поморие";
+
+        public const string LeagueTableSpartakVarna = "	Спартак Варна";
+
+        public const string LeagueTableSpartakPleven = "Спартак Плевен";
+
     }
 }

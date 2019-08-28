@@ -30,6 +30,7 @@
                               new OrderStatusSeeder(),
                               new PlayerPositionSeeder(),
                               new MatchStatusSeeder(),
+                              new LeagueTableTeamsSeeder(),
                           };
 
             foreach (var seeder in seeders)

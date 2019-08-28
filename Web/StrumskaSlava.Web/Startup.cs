@@ -126,8 +126,7 @@
             services.AddTransient<IFootballPlayerService, FootballPlayerService>();
             services.AddTransient<IGalleryService, GalleryService>();
             services.AddTransient<IMatchScheduleService, MatchScheduleService>();
-
-
+            services.AddTransient<ILeagueTableService, LeagueTableService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
