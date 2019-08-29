@@ -50,6 +50,7 @@
             return this.Redirect($"/Receipt/Details/{receiptId}");
         }
 
+        [Authorize]
         [Route("/Order/{id}/Quantity/Reduce")]
         public async Task<IActionResult> Reduce(string id)
         {
@@ -58,7 +59,7 @@
             return this.Ok();
         }
 
-
+        [Authorize]
         [Route("/Order/{id}/Quantity/Increase")]
         public async Task<IActionResult> Increase(string id)
         {
