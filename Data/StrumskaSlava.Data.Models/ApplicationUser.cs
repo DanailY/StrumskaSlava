@@ -4,9 +4,8 @@ namespace StrumskaSlava.Data.Models
     using System;
     using System.Collections.Generic;
 
-    using StrumskaSlava.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using StrumskaSlava.Data.Common.Models;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {

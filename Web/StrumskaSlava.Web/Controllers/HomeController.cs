@@ -34,7 +34,12 @@
             return this.View(topThreeNews);
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> About()
+        {
+            return this.View();
+        }
+
+        public async Task<IActionResult> Privacy()
         {
             return this.View();
         }

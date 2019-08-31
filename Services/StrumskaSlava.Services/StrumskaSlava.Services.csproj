@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\StrumskaSlava.Data\StrumskaSlava.Data.csproj" />
+    <ProjectReference Include="..\..\Web\StrumskaSlava.Web.BindingModels\StrumskaSlava.Web.BindingModels.csproj" />
     <ProjectReference Include="..\StrumskaSlava.Services.Data\StrumskaSlava.Services.Data.csproj" />
     <ProjectReference Include="..\StrumskaSlava.Services.Mapping\StrumskaSlava.Services.Mapping.csproj" />
   </ItemGroup>

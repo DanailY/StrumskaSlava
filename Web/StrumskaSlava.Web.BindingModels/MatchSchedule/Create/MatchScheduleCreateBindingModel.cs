@@ -9,7 +9,7 @@ using System.Text;
 
 namespace StrumskaSlava.Web.BindingModels.MatchSchedule.Create
 {
-    public class MatchScheduleCreateBindingModel : IMapTo<MatchScheduleServiceModel>, IHaveCustomMappings
+    public class MatchScheduleCreateBindingModel : IMapTo<MatchScheduleServiceModel>, IMapFrom<MatchScheduleServiceModel>, IHaveCustomMappings
     {
         [Required]
         public string HomeTeam { get; set; }
