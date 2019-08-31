@@ -24,8 +24,8 @@
         <div class="d-flex justify-content-start">
             @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin"))
             {
-                <span class="btn bg-primary text-white mr-1" href="/Administration/Player/Edit/@Model.Id">Редактирай</span>
-                <span class="btn bg-danger text-white mr-1" href="/Administration/Player/Delete/@Model.Id">Изтрий</span>
+                <a class="btn bg-primary text-white mr-1" href="/Administration/Player/Edit/@Model.Id">Редактирай</a>
+                <a class="btn bg-danger text-white mr-1" href="/Administration/Player/Delete/@Model.Id">Изтрий</a>
             }
         </div>
     </div>
