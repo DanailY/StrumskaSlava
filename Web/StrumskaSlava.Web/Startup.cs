@@ -95,6 +95,9 @@
                     options.ConsentCookie.Name = ".AspNetCore.ConsentCookie";
                 });
 
+            // TempData (status messages, 2FA recovery codes) must work before the cookie policy is accepted
+            services.Configure<CookieTempDataProviderOptions>(options => options.Cookie.IsEssential = true);
+
             services.AddSingleton(this.configuration);
 
             // Identity stores

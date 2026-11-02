@@ -64,7 +64,10 @@
                 }
             }
 
-            var result = await this.userManager.DeleteAsync(user);
+            // Soft delete: the user's orders and receipts reference it and cascade delete is disabled
+            user.IsDeleted = true;
+            user.DeletedOn = DateTime.UtcNow;
+            var result = await this.userManager.UpdateAsync(user);
             var userId = await this.userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             {
