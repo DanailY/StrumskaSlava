@@ -9,7 +9,7 @@
     <div class="mt-3">
         <div id="post-header" class="page-header">
             <div class=".post-img">
-                <img class="img-fluid mx-auto d-block img-thumbnail post-img" src="@Model.Picture" alt="">
+                <img class="img-fluid mx-auto d-block img-thumbnail post-img" src="@DefaultPictures.News(Model.Picture)" onerror="@DefaultPictures.OnError(DefaultPictures.NewsUrl)" alt="">
             </div>
             <div class="container mt-3">
                 <div class="row">

@@ -37,8 +37,9 @@ namespace StrumskaSlava.Web.BindingModels.FootballPlayer.Edit
         [Required]
         public string PlayerPosition { get; set; }
 
-        [Required]
         public IFormFile Picture { get; set; }
+
+        public string CurrentPicture { get; set; }
 
         [Required]
         public string Country { get; set; }
@@ -60,6 +61,8 @@ namespace StrumskaSlava.Web.BindingModels.FootballPlayer.Edit
                 .CreateMap<FootballPlayerServiceModel, FootballPlayerEditBindingModel>()
                 .ForMember(destination => destination.Picture,
                             opts => opts.Ignore())
+                .ForMember(destination => destination.CurrentPicture,
+                            opts => opts.MapFrom(origin => origin.Picture))
                 .ForMember(destination => destination.PlayerPosition,
                             opts => opts.MapFrom(origin => origin.PlayerPosition.Name));
         }

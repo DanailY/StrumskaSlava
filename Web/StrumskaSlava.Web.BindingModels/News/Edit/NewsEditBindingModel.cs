@@ -17,8 +17,9 @@ namespace StrumskaSlava.Web.BindingModels.News.Edit
         [Required]
         public string Content { get; set; }
 
-        [Required]
         public IFormFile Picture { get; set; }
+
+        public string CurrentPicture { get; set; }
 
         [Required]
         public string NewsCategory { get; set; }
@@ -29,6 +30,8 @@ namespace StrumskaSlava.Web.BindingModels.News.Edit
                 .CreateMap<NewsServiceModel, NewsEditBindingModel>()
                 .ForMember(destination => destination.Picture,
                             opts => opts.Ignore())
+                .ForMember(destination => destination.CurrentPicture,
+                            opts => opts.MapFrom(origin => origin.Picture))
                 .ForMember(destination => destination.NewsCategory,
                             opts => opts.MapFrom(origin => origin.NewsCategory.Name));
 

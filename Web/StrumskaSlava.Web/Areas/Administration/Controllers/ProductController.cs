@@ -75,8 +75,9 @@
                 return this.View();
             }
 
-            string pictureUrl = await this.cloudinaryService
-                .UploadPictureAync(productCreateInputModel.Picture, productCreateInputModel.Name);
+            string pictureUrl = productCreateInputModel.Picture == null
+                ? null
+                : await this.cloudinaryService.UploadPictureAync(productCreateInputModel.Picture, productCreateInputModel.Name);
 
             ProductServiceModel productServiceModel = AutoMapperConfig.MapperInstance.Map<ProductServiceModel>(productCreateInputModel);
 
@@ -127,8 +128,9 @@
                 return this.View(productEditBindingModel);
             }
 
-            string pictureUrl = await this.cloudinaryService
-                .UploadPictureAync(productEditBindingModel.Picture, productEditBindingModel.Name);
+            string pictureUrl = productEditBindingModel.Picture == null
+                ? null
+                : await this.cloudinaryService.UploadPictureAync(productEditBindingModel.Picture, productEditBindingModel.Name);
 
             ProductServiceModel productServiceModel = AutoMapperConfig.MapperInstance.Map<ProductServiceModel>(productEditBindingModel);
 

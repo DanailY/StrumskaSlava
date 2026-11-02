@@ -22,6 +22,13 @@
             <div class="d-flex justify-content-center">
                 <label asp-for="Picture" class="text-primary">Снимка</label>
             </div>
+            <div class="text-center mb-2">
+                <img src="@DefaultPictures.News(Model.CurrentPicture)" onerror="@DefaultPictures.OnError(DefaultPictures.NewsUrl, "current-picture-note", "Текущата снимка не може да се зареди (вероятно е изтрита). Качете нова.")" class="img-thumbnail" style="max-height: 150px;" alt="Текуща снимка" />
+                <small id="current-picture-note" class="d-block text-muted">
+                    @(string.IsNullOrEmpty(Model.CurrentPicture) ? "Няма качена снимка" : "Текуща снимка. Качете нова, за да я смените.")
+                </small>
+            </div>
+            <input type="hidden" asp-for="CurrentPicture" />
             <input type="file"
                    class="form-control-file text-primary text-center"
                    id="picture"

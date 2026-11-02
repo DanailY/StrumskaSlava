@@ -18,8 +18,9 @@
         [Required]
         public decimal Price { get; set; }
 
-        [Required]
         public IFormFile Picture { get; set; }
+
+        public string CurrentPicture { get; set; }
 
         [Required]
         public string ProductType { get; set; }
@@ -33,6 +34,8 @@
                 .CreateMap<ProductServiceModel, ProductEditBindingModel>()
                 .ForMember(destination => destination.Picture,
                             opts => opts.Ignore())
+                .ForMember(destination => destination.CurrentPicture,
+                            opts => opts.MapFrom(origin => origin.Picture))
                 .ForMember(destination => destination.ProductType,
                             opts => opts.MapFrom(origin => origin.ProductType.Name));
 

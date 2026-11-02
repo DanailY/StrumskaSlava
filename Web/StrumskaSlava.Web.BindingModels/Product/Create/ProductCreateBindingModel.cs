@@ -21,7 +21,6 @@
         [Required]
         public DateTime ManufactureOn { get; set; }
 
-        [Required]
         public IFormFile Picture { get; set; }
 
         [Required]

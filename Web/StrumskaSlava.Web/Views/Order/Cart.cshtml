@@ -21,7 +21,7 @@ else
                 <h5 class="col-md-1 text-left">@(i + 1)</h5>
                 <div class="col-md-3">
                     <img class="img-thumbnail product-cart-image"
-                         src="@Model[i].ProductPicture" />
+                         src="@DefaultPictures.Product(Model[i].ProductPicture)" onerror="@DefaultPictures.OnError(DefaultPictures.ProductUrl)" />
                 </div>
                 <h5 class="col-md-3 text-left">@Model[i].ProductName</h5>
                 <h5 class="col-md-2 text-left order-price">@Model[i].ProductPrice лв</h5>

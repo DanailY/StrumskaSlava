@@ -56,10 +56,13 @@
                         Name = position.Name,
                     })
                     .ToList();
+
+                return this.View();
             }
 
-            string pictureUrl = await this.cloudinaryService
-               .UploadPictureAync(footballPlayerCreateBindingModel.Picture, footballPlayerCreateBindingModel.Name);
+            string pictureUrl = footballPlayerCreateBindingModel.Picture == null
+                ? null
+                : await this.cloudinaryService.UploadPictureAync(footballPlayerCreateBindingModel.Picture, footballPlayerCreateBindingModel.Name);
 
             FootballPlayerServiceModel footballPlayerServiceModel = footballPlayerCreateBindingModel.To<FootballPlayerServiceModel>();
 
@@ -111,8 +114,9 @@
                 return this.View(footballPlayerEditBindingModel);
             }
 
-            string pictureUrl = await this.cloudinaryService
-                .UploadPictureAync(footballPlayerEditBindingModel.Picture, footballPlayerEditBindingModel.Name);
+            string pictureUrl = footballPlayerEditBindingModel.Picture == null
+                ? null
+                : await this.cloudinaryService.UploadPictureAync(footballPlayerEditBindingModel.Picture, footballPlayerEditBindingModel.Name);
 
             FootballPlayerServiceModel footballPlayerServiceModel = footballPlayerEditBindingModel.To<FootballPlayerServiceModel>();
 

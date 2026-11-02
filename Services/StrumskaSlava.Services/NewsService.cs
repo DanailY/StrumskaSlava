@@ -87,7 +87,11 @@
 
             newsFromDb.Title = newsServiceModel.Title;
             newsFromDb.Content = newsServiceModel.Content;
-            newsFromDb.Picture = newsServiceModel.Picture;
+            // Keep the current picture unless a new one was uploaded
+            if (!string.IsNullOrEmpty(newsServiceModel.Picture))
+            {
+                newsFromDb.Picture = newsServiceModel.Picture;
+            }
 
             newsFromDb.NewsCategory = newsCategoryFromDb;
 

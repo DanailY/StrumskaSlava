@@ -14,7 +14,7 @@
     {
         <div class="col-md-4">
             <div class="post">
-                <a class="post-img img-thumbnail" href="/News/Details/@news.Id"><img src="@news.Picture" alt=""></a>
+                <a class="post-img img-thumbnail" href="/News/Details/@news.Id"><img src="@DefaultPictures.News(news.Picture)" onerror="@DefaultPictures.OnError(DefaultPictures.NewsUrl)" alt=""></a>
                 <div class="post-body">
                     <div class="post-meta">
                         <a class="post-category" href="">@news.NewsCategory</a>

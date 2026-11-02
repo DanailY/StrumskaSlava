@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Няма снимка">
+  <rect width="800" height="600" fill="#e9eef5"/>
+  <g fill="none" stroke="#007bff" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" opacity="0.55">
+    <rect x="270" y="170" width="260" height="210" rx="16"/>
+    <line x1="310" y1="220" x2="490" y2="220"/>
+    <rect x="310" y="255" width="80" height="80" rx="6"/>
+    <line x1="420" y1="265" x2="490" y2="265"/>
+    <line x1="420" y1="300" x2="490" y2="300"/>
+    <line x1="420" y1="335" x2="490" y2="335"/>
+  </g>
+  <text x="400" y="450" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#5a6b80">Новина без снимка</text>
+</svg>

@@ -18,7 +18,6 @@ namespace StrumskaSlava.Web.BindingModels.News
         [Required]
         public string Content { get; set; }
 
-        [Required]
         public IFormFile Picture { get; set; }
 
         [Required]

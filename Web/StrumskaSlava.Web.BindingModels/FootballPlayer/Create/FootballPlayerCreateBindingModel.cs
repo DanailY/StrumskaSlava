@@ -37,7 +37,6 @@ namespace StrumskaSlava.Web.BindingModels.FootballPlayer.Create
         [Required]
         public string PlayerPosition { get; set; }
 
-        [Required]
         public IFormFile Picture { get; set; }
 
         [Required]

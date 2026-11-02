@@ -58,7 +58,11 @@
 
             footballPlayerFromDb.Name = footballPlayerServiceModel.Name;
             footballPlayerFromDb.Country = footballPlayerServiceModel.Country;
-            footballPlayerFromDb.Picture = footballPlayerServiceModel.Picture;
+            // Keep the current picture unless a new one was uploaded
+            if (!string.IsNullOrEmpty(footballPlayerServiceModel.Picture))
+            {
+                footballPlayerFromDb.Picture = footballPlayerServiceModel.Picture;
+            }
             footballPlayerFromDb.Age = footballPlayerServiceModel.Age;
             footballPlayerFromDb.Height = footballPlayerServiceModel.Height;
             footballPlayerFromDb.PlayerNumber = footballPlayerServiceModel.PlayerNumber;

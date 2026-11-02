@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Няма снимка">
+  <rect width="800" height="600" fill="#e9eef5"/>
+  <path d="M330 160 L290 175 L235 235 L280 285 L310 260 L310 390 L490 390 L490 260 L520 285 L565 235 L510 175 L470 160 Q400 205 330 160 Z"
+        fill="none" stroke="#007bff" stroke-width="14" stroke-linejoin="round" opacity="0.55"/>
+  <text x="400" y="460" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#5a6b80">Продукт без снимка</text>
+</svg>

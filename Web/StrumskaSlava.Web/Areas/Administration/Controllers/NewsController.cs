@@ -74,8 +74,9 @@
                 return this.View();
             }
 
-            string pictureUrl = await this.cloudinaryService
-                .UploadPictureAync(newsCreateBindingModel.Picture, newsCreateBindingModel.Title);
+            string pictureUrl = newsCreateBindingModel.Picture == null
+                ? null
+                : await this.cloudinaryService.UploadPictureAync(newsCreateBindingModel.Picture, newsCreateBindingModel.Title);
 
             NewsServiceModel newsServiceModel = newsCreateBindingModel.To<NewsServiceModel>();
 
@@ -126,8 +127,9 @@
                 return this.View(newsEditBindingModel);
             }
 
-            string pictureUrl = await this.cloudinaryService
-                .UploadPictureAync(newsEditBindingModel.Picture, newsEditBindingModel.Title);
+            string pictureUrl = newsEditBindingModel.Picture == null
+                ? null
+                : await this.cloudinaryService.UploadPictureAync(newsEditBindingModel.Picture, newsEditBindingModel.Title);
 
             NewsServiceModel newsServiceModel = newsEditBindingModel.To<NewsServiceModel>();
 

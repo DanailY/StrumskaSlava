@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" role="img" aria-label="Няма снимка">
+  <rect width="600" height="800" fill="#e9eef5"/>
+  <g fill="#007bff" opacity="0.4">
+    <circle cx="300" cy="270" r="105"/>
+    <path d="M110 600 Q110 410 300 410 Q490 410 490 600 Z"/>
+  </g>
+  <text x="300" y="690" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#5a6b80">Играч без снимка</text>
+</svg>

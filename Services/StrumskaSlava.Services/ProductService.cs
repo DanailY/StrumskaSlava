@@ -77,7 +77,11 @@
 
             productFromDb.Name = productServiceModel.Name;
             productFromDb.Price = productServiceModel.Price;
-            productFromDb.Picture = productServiceModel.Picture;
+            // Keep the current picture unless a new one was uploaded
+            if (!string.IsNullOrEmpty(productServiceModel.Picture))
+            {
+                productFromDb.Picture = productServiceModel.Picture;
+            }
             productFromDb.Description = productServiceModel.Description;
 
             productFromDb.ProductType = productTypeFromDb;
