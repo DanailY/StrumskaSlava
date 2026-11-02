@@ -15,7 +15,7 @@
     using StrumskaSlava.Web.BindingModels.Product.Order;
     using StrumskaSlava.Web.ViewModels.Product.All;
     using StrumskaSlava.Web.ViewModels.Product.Details;
-    using X.PagedList;
+    using X.PagedList.Extensions;
 
     public class ProductController : BaseController
     {

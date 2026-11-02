@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <h1 class="text-center mt-5 ">Създаване на Галерия</h1>
     <hr style="height: 2px;" class="w-50">
-    <form class="w-50 mx-auto" method="post" asp-action="/Administration/Gallery/Create" enctype="multipart/form-data">
+    <form class="w-50 mx-auto" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Име на Галерията</label>
             <input type="text" class="form-control text-primary" id="name" placeholder="Име на Галерията..." name="name">
@@ -26,7 +26,7 @@
             <button type="submit" class="btn btn-primary">Създай</button>
         </div>
     </form>
-    <form asp-action="/" method="post"></form>
+    <form method="post"></form>
 </div>
 
 @section Scripts {

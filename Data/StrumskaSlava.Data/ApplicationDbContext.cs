@@ -8,6 +8,7 @@
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ValueGeneration;
     using StrumskaSlava.Data.Common.Models;
     using StrumskaSlava.Data.Models;
 
@@ -90,6 +91,16 @@
             {
                 var method = SetIsDeletedQueryFilterMethod.MakeGenericMethod(deletableEntityType.ClrType);
                 method.Invoke(null, new object[] { builder });
+            }
+
+            // Generate GUID values for string keys on the client (EF Core 3.0+ no longer does this by default)
+            var stringKeyEntityTypes = entityTypes
+                .Where(et => et.ClrType != null && typeof(BaseModel<string>).IsAssignableFrom(et.ClrType));
+            foreach (var stringKeyEntityType in stringKeyEntityTypes)
+            {
+                builder.Entity(stringKeyEntityType.ClrType)
+                    .Property(nameof(BaseModel<string>.Id))
+                    .HasValueGenerator<StringValueGenerator>();
             }
 
             // Disable cascade delete

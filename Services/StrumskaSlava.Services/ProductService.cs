@@ -28,7 +28,7 @@
                 throw new ArgumentNullException(nameof(productTypeFromDb));
             }
 
-            Product product = AutoMapper.Mapper.Map<Product>(productServiceModel);
+            Product product = AutoMapperConfig.MapperInstance.Map<Product>(productServiceModel);
             product.ProductType = productTypeFromDb;
 
             this.context.Products.Add(product);

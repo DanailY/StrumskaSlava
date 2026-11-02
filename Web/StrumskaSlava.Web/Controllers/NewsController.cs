@@ -12,7 +12,7 @@
     using StrumskaSlava.Web.ViewModels.News.All;
     using StrumskaSlava.Web.ViewModels.News.Create;
     using StrumskaSlava.Web.ViewModels.News.Details;
-    using X.PagedList;
+    using X.PagedList.Extensions;
 
     public class NewsController : BaseController
     {

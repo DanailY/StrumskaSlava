@@ -66,6 +66,7 @@
                 .Build();
 
             services.AddSingleton<IConfiguration>(configuration);
+            services.AddLogging();
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
                     .UseLoggerFactory(new LoggerFactory()));

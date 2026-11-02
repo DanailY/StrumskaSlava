@@ -5,17 +5,18 @@
     using System.Linq;
 
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Hosting.Server;
     using Microsoft.AspNetCore.Hosting.Server.Features;
     using Microsoft.AspNetCore.Mvc.Testing;
-    using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
 
     public class SeleniumServerFactory<TStartup> : WebApplicationFactory<TStartup>
         where TStartup : class
     {
         private readonly Process process;
 
-        private IWebHost host;
+        private IHost host;
 
         public SeleniumServerFactory()
         {
@@ -35,15 +36,20 @@
 
         public string RootUri { get; set; } // Save this use by tests
 
-        protected override TestServer CreateServer(IWebHostBuilder builder)
+        protected override IHost CreateHost(IHostBuilder builder)
         {
+            // In-memory host used by WebApplicationFactory itself
+            var testHost = builder.Build();
+
             // Real TCP port
+            builder.ConfigureWebHost(webHostBuilder => webHostBuilder.UseKestrel());
             this.host = builder.Build();
             this.host.Start();
-            this.RootUri = this.host.ServerFeatures.Get<IServerAddressesFeature>().Addresses.LastOrDefault(); // Last is https://localhost:5001!
+            this.RootUri = this.host.Services.GetRequiredService<IServer>()
+                .Features.Get<IServerAddressesFeature>().Addresses.LastOrDefault(); // Last is https://localhost:5001!
 
-            // Fake Server we won't use...this is lame. Should be cleaner, or a utility class
-            return new TestServer(new WebHostBuilder().UseStartup<FakeStartup>());
+            testHost.Start();
+            return testHost;
         }
 
         protected override void Dispose(bool disposing)
@@ -51,19 +57,8 @@
             base.Dispose(disposing);
             if (disposing)
             {
-                this.host.Dispose();
+                this.host?.Dispose();
                 this.process.CloseMainWindow(); // Be sure to stop Selenium Standalone
-            }
-        }
-
-        public class FakeStartup
-        {
-            public void ConfigureServices(IServiceCollection services)
-            {
-            }
-
-            public void Configure()
-            {
             }
         }
     }

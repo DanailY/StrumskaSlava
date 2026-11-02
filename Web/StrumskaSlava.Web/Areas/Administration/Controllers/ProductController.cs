@@ -78,7 +78,7 @@
             string pictureUrl = await this.cloudinaryService
                 .UploadPictureAync(productCreateInputModel.Picture, productCreateInputModel.Name);
 
-            ProductServiceModel productServiceModel = AutoMapper.Mapper.Map<ProductServiceModel>(productCreateInputModel);
+            ProductServiceModel productServiceModel = AutoMapperConfig.MapperInstance.Map<ProductServiceModel>(productCreateInputModel);
 
             productServiceModel.Picture = pictureUrl;
 
@@ -130,7 +130,7 @@
             string pictureUrl = await this.cloudinaryService
                 .UploadPictureAync(productEditBindingModel.Picture, productEditBindingModel.Name);
 
-            ProductServiceModel productServiceModel = AutoMapper.Mapper.Map<ProductServiceModel>(productEditBindingModel);
+            ProductServiceModel productServiceModel = AutoMapperConfig.MapperInstance.Map<ProductServiceModel>(productEditBindingModel);
 
             productServiceModel.Picture = pictureUrl;
 

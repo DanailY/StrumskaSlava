@@ -16,7 +16,7 @@
 
             foreach (var src in source)
             {
-                yield return AutoMapper.Mapper.Map<TDestination>(src);
+                yield return AutoMapperConfig.MapperInstance.Map<TDestination>(src);
             }
         }
     }

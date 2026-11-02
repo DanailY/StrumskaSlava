@@ -13,7 +13,7 @@
                 throw new ArgumentNullException(nameof(origin));
             }
 
-            return AutoMapper.Mapper.Map<T>(origin);
+            return AutoMapperConfig.MapperInstance.Map<T>(origin);
         }
     }
 }

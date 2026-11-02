@@ -6,11 +6,14 @@
     using System.Reflection;
 
     using AutoMapper;
-    using AutoMapper.Configuration;
+
+    using Microsoft.Extensions.Logging.Abstractions;
 
     public static class AutoMapperConfig
     {
         private static bool initialized;
+
+        public static IMapper MapperInstance { get; private set; }
 
         public static void RegisterMappings(params Assembly[] assemblies)
         {
@@ -46,7 +49,7 @@
                         map.CreateMappings(configuration);
                     }
                 });
-            Mapper.Initialize(config);
+            MapperInstance = new Mapper(new MapperConfiguration(config, NullLoggerFactory.Instance));
         }
 
         private static IEnumerable<TypesMap> GetFromMaps(IEnumerable<Type> types)

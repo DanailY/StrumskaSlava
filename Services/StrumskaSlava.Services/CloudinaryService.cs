@@ -38,10 +38,10 @@ namespace StrumskaSlava.Services
                     File = new FileDescription(fileName, ms),
                 };
 
-                uploadResult = this.cloudinaryUltility.Upload(uploadParams);
+                uploadResult = await this.cloudinaryUltility.UploadAsync(uploadParams);
             }
 
-            return uploadResult?.SecureUri.AbsoluteUri;
+            return uploadResult?.SecureUrl?.AbsoluteUri;
         }
     }
 }
